@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/linkml/linkml-project-cookiecutter",
+  "commit": "239e92ef0b1865c075446c89dcc315f941b1d60d",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "smoc-schema",
+      "__project_slug": "smoc_schema",
+      "github_org": "sdsc-ordes",
+      "__source_path": "src/smoc_schema/schema/smoc_schema.yaml",
+      "project_description": "Metadata schema for the SMOC Multi-Omics Digital Object",
+      "full_name": "My Name",
+      "email": "my-name@my-org.org",
+      "__author": "My Name <my-name@my-org.org>",
+      "license": "MIT",
+      "main_schema_class": "Study",
+      "create_python_classes": "Yes",
+      "use_schemasheets": "No",
+      "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",
+      "google_sheet_tabs": "personinfo enums",
+      "__google_sheet_module": "personinfo_enums",
+      "github_token_for_pypi_deployment": "PYPI_PASSWORD",
+      "_template": "https://github.com/linkml/linkml-project-cookiecutter"
+    }
+  },
+  "directory": null
+}
