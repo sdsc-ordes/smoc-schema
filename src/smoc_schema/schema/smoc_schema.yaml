@@ -13,7 +13,9 @@ prefixes:
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/
   schema: http://schema.org/
-  PATO: http://purl.obolibrary.org/obo/PATO_
+  EDAM: http://edamontology.org/
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  FG: https://w3id.org/fair-genomes/ontology/
   example: https://example.org/
 default_prefix: smoc_schema
 default_range: string
@@ -77,20 +79,22 @@ slots:
   age_in_years:
     range: integer
     description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+  omics_type:
+    range: OmicsType
+    description: The type of omics considered.
 
 enums:
-  PersonStatus:
+  OmicsType:
     permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+      GENOMICS:
+        description: The study of the structure, function, expression, evolution, mapping and editing of genomes.
+        meaning: NCIT:C84343
+      TRANSCRIPTOMICS:
+        description: The study of the complete set of RNA transcripts that are produced by the genome.
+        meaning: NCIT:C153189
+      METABOLOMICS:
+        description: The study of biological metabolic profiles.
+        meaning: NCIT:C49019
+      PROTEOMICS:
+        description: The global analysis of cellular proteins. 
+        meaning: NCIT:C20085
