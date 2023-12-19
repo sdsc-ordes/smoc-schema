@@ -88,6 +88,7 @@ classes:
 
   Array:
     is_a: Record
+    description: Data record consisting of an N-dimensional array.
 
   StudyCollection:
     tree_root: true
@@ -98,6 +99,7 @@ classes:
         range: Study
         multivalued: true
         inlined: true
+
 
 slots:
   id:
@@ -126,9 +128,24 @@ slots:
   has_experiment:
     description: An experiment.
     range: Experiment
+  has_sample:
+    description: Biological sample included or described by a given thing.
+    range: Sample
+  has_record:
+    description: Data record included in a given collection.
+    range: Record
   format:
     description: Data/file format associated with a data record.
     range: DataFormat
+  taxon_id:
+    description: The taxid number describing the taxonomic range of a sample.
+    range: integer
+  collector:
+    description: The organization responsible for collecting a given sample.
+    range: string
+  location:
+    description: The location of a data record, either on the web or the filesystem
+    range: uriorcurie
 
 enums:
   OmicsType:
