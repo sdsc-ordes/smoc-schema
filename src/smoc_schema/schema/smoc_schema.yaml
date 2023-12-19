@@ -78,6 +78,26 @@ classes:
       - format
       - has_sample
 
+  ReferenceGenome:
+    description: >-
+      Reference assembly of a given genome, consisting
+      of a collection of congiguous sequences (contigs).
+    slots:
+      - name
+      - has_sequence
+      - taxon_id
+      - location
+      - source_uri
+
+  ReferenceSequence:
+    description: >-
+      A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
+    slots:
+      - name
+      - sequence_md5
+      - location
+      - source_uri
+
   AlignmentSet:
     is_a: Record
     description: A data record consisting of genomic intervals aligned to a reference.
@@ -146,6 +166,18 @@ slots:
   location:
     description: The location of a data record, either on the web or the filesystem
     range: uriorcurie
+  sequence_md5:
+    description: >-
+      The pre-computed hash uniquely representing a biological sequence.
+      Calculated as the MD5 of the upper-case sequence excluding all whitespace characters (this is equivalent to SQ:M5 in SAM).
+    range: string
+    pattern: "^[a-f0-9]{32}$"
+  source_uri:
+    description: The URI from which a resource was obtained.
+    range: uriorcurie
+  has_sequence:
+    description: Denotes that a sequence beolongs to a collection (e.g. a reference genome).
+    range: ReferenceSequence
 
 enums:
   OmicsType:
