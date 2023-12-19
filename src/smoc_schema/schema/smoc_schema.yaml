@@ -46,22 +46,39 @@ classes:
     slots:
       - start_date
       - completion_date
-      - has_record
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      - has_experiment
 
   Experiment:
     see_also:
       - NCIT:C42790
+    description: A coordinated set of actions designed to generate data. An experiment can contain multiple samples and datasets.
+    slots:
+      - has_sample
+      - has_record
 
   Sample:
     see_also:
       - bioschemas:Sample
+    description: A biological sample used in experiments. Examples include a whole organism, tissue or cell line.
+    slots:
+      - taxon_id
+      - collector
 
-  Run:
+  Record:
+    description: An individual data record. Examples include an array or an alignment file.
+    slots:
+      - location
+      - format
+      - has_sample
 
-  DataSet:
+  AlignmentSet:
+    is_a: Record
+
+  VariantSet:
+    is_a: Record
+
+  Array:
+    is_a: Record
 
   StudyCollection:
     tree_root: true
@@ -92,7 +109,7 @@ slots:
     range: datetime
   start_date:
     slot_uri: FG:start_date
-    description: The date on which this study began. 
+    description: The date on which this study began.
     range: datetime
   omics_type:
     description: The type of omics considered.
@@ -100,6 +117,9 @@ slots:
   has_experiment:
     description: An experiment.
     range: Experiment
+  format:
+    description: Data/file format associated with a data record.
+    range: DataFormat
 
 enums:
   OmicsType:
@@ -114,5 +134,13 @@ enums:
         description: The study of biological metabolic profiles.
         meaning: NCIT:C49019
       PROTEOMICS:
-        description: The global analysis of cellular proteins. 
+        description: The global analysis of cellular proteins.
         meaning: NCIT:C20085
+  DataFormat:
+    permissible_values:
+      CRAM:
+        description: Referenced-based compression of alignment format.
+        meaning: EDAM:format_3462
+      Zarr:
+        description: Chunked, compressed N-dimensional arrays.
+        meaning: EDAM:format_3915
