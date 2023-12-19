@@ -2,6 +2,37 @@
 
 Metadata schema for the SMOC Multi-Omics Digital Object
 
+```mermaid
+erDiagram
+StudyCollection {
+
+}
+Study {
+    datetime start_date  
+    datetime completion_date  
+    uriorcurie id  
+    string name  
+    string description  
+}
+Experiment {
+
+}
+Record {
+    uriorcurie location  
+    DataFormat format  
+}
+Sample {
+    integer taxon_id  
+    string collector  
+}
+
+StudyCollection ||--}o Study : "entries"
+Study ||--|o Experiment : "has_experiment"
+Experiment ||--|o Sample : "has_sample"
+Experiment ||--|o Record : "has_record"
+Record ||--|o Sample : "has_sample"
+```
+
 ## Website
 
 [https://sdsc-ordes.github.io/smoc-schema](https://sdsc-ordes.github.io/smoc-schema)

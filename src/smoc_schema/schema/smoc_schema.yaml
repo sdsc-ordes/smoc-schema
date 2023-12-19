@@ -13,6 +13,7 @@ prefixes:
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/
   schema: http://schema.org/
+  bioschemas: https://bioschemas.org/
   EDAM: http://edamontology.org/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   FG: https://w3id.org/fair-genomes/ontology/
@@ -37,15 +38,77 @@ classes:
   Study:
     is_a: NamedThing
     description: >-
-      Represents a Study
+      Represents the digital object.
+      It encapsulates omics and other datasets and their metadata.
+    see_also:
+      - bioschemas:Study
+      - FG:Study
+      - NCIT:C63536
     slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      - start_date
+      - completion_date
+      - has_experiment
+
+  Experiment:
+    see_also:
+      - NCIT:C42790
+    description: >-
+      A coordinated set of actions designed to generate data.
+      An experiment can contain multiple samples and datasets.
+    slots:
+      - has_sample
+      - has_record
+
+  Sample:
+    see_also:
+      - bioschemas:Sample
+    description: >-
+      A biological sample used in experiments.
+      Examples include a whole organism, tissue or cell line.
+    slots:
+      - taxon_id
+      - collector
+
+  Record:
+    description: >-
+      An individual data record.
+      Examples include an array or an alignment file.
+    slots:
+      - location
+      - format
+      - has_sample
+
+  ReferenceGenome:
+    description: >-
+      Reference assembly of a given genome, consisting
+      of a collection of congiguous sequences (contigs).
+    slots:
+      - name
+      - has_sequence
+      - taxon_id
+      - location
+      - source_uri
+
+  ReferenceSequence:
+    description: >-
+      A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
+    slots:
+      - name
+      - sequence_md5
+      - location
+      - source_uri
+
+  AlignmentSet:
+    is_a: Record
+    description: A data record consisting of genomic intervals aligned to a reference.
+
+  VariantSet:
+    is_a: Record
+    description: A data record consisting of genomic variants relative to a reference.
+
+  Array:
+    is_a: Record
+    description: Data record consisting of an N-dimensional array.
 
   StudyCollection:
     tree_root: true
@@ -56,6 +119,7 @@ classes:
         range: Study
         multivalued: true
         inlined: true
+
 
 slots:
   id:
@@ -69,32 +133,76 @@ slots:
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
+
+  completion_date:
+    slot_uri: FG:completion_date
+    description: The date on which the concluding information for this study is completed.
+    range: datetime
+  start_date:
+    slot_uri: FG:start_date
+    description: The date on which this study began.
+    range: datetime
   omics_type:
-    range: OmicsType
     description: The type of omics considered.
+    range: OmicsType
+  has_experiment:
+    description: An experiment.
+    range: Experiment
+  has_sample:
+    description: Biological sample included or described by a given thing.
+    range: Sample
+  has_record:
+    description: Data record included in a given collection.
+    range: Record
+  format:
+    description: Data/file format associated with a data record.
+    range: DataFormat
+  taxon_id:
+    description: The taxid number describing the taxonomic range of a sample.
+    range: integer
+  collector:
+    description: The organization responsible for collecting a given sample.
+    range: string
+  location:
+    description: The location of a data record, either on the web or the filesystem
+    range: uriorcurie
+  sequence_md5:
+    description: >-
+      The pre-computed hash uniquely representing a biological sequence.
+      Calculated as the MD5 of the upper-case sequence excluding all whitespace characters (this is equivalent to SQ:M5 in SAM).
+    range: string
+    pattern: "^[a-f0-9]{32}$"
+  source_uri:
+    description: The URI from which a resource was obtained.
+    range: uriorcurie
+  has_sequence:
+    description: Denotes that a sequence beolongs to a collection (e.g. a reference genome).
+    range: ReferenceSequence
 
 enums:
   OmicsType:
     permissible_values:
       GENOMICS:
-        description: The study of the structure, function, expression, evolution, mapping and editing of genomes.
+        description: >-
+          The study of the structure, function, expression,
+          evolution, mapping and editing of genomes.
         meaning: NCIT:C84343
       TRANSCRIPTOMICS:
-        description: The study of the complete set of RNA transcripts that are produced by the genome.
+        description: >-
+          The study of the complete set of RNA
+          transcripts that are produced by the genome.
         meaning: NCIT:C153189
       METABOLOMICS:
         description: The study of biological metabolic profiles.
         meaning: NCIT:C49019
       PROTEOMICS:
-        description: The global analysis of cellular proteins. 
+        description: The global analysis of cellular proteins.
         meaning: NCIT:C20085
+  DataFormat:
+    permissible_values:
+      CRAM:
+        description: Referenced-based compression of alignment format.
+        meaning: EDAM:format_3462
+      Zarr:
+        description: Chunked, compressed N-dimensional arrays.
+        meaning: EDAM:format_3915
