@@ -38,7 +38,8 @@ classes:
   Study:
     is_a: NamedThing
     description: >-
-      Represents the digital object. It encapsulates omics and other datasets and their metadata.
+      Represents the digital object.
+      It encapsulates omics and other datasets and their metadata.
     see_also:
       - bioschemas:Study
       - FG:Study
@@ -51,7 +52,9 @@ classes:
   Experiment:
     see_also:
       - NCIT:C42790
-    description: A coordinated set of actions designed to generate data. An experiment can contain multiple samples and datasets.
+    description: >-
+      A coordinated set of actions designed to generate data.
+      An experiment can contain multiple samples and datasets.
     slots:
       - has_sample
       - has_record
@@ -59,13 +62,17 @@ classes:
   Sample:
     see_also:
       - bioschemas:Sample
-    description: A biological sample used in experiments. Examples include a whole organism, tissue or cell line.
+    description: >-
+      A biological sample used in experiments.
+      Examples include a whole organism, tissue or cell line.
     slots:
       - taxon_id
       - collector
 
   Record:
-    description: An individual data record. Examples include an array or an alignment file.
+    description: >-
+      An individual data record.
+      Examples include an array or an alignment file.
     slots:
       - location
       - format
@@ -73,9 +80,11 @@ classes:
 
   AlignmentSet:
     is_a: Record
+    description: A data record consisting of genomic intervals aligned to a reference.
 
   VariantSet:
     is_a: Record
+    description: A data record consisting of genomic variants relative to a reference.
 
   Array:
     is_a: Record
@@ -125,10 +134,14 @@ enums:
   OmicsType:
     permissible_values:
       GENOMICS:
-        description: The study of the structure, function, expression, evolution, mapping and editing of genomes.
+        description: >-
+          The study of the structure, function, expression,
+          evolution, mapping and editing of genomes.
         meaning: NCIT:C84343
       TRANSCRIPTOMICS:
-        description: The study of the complete set of RNA transcripts that are produced by the genome.
+        description: >-
+          The study of the complete set of RNA
+          transcripts that are produced by the genome.
         meaning: NCIT:C153189
       METABOLOMICS:
         description: The study of biological metabolic profiles.
