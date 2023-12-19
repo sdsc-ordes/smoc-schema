@@ -13,6 +13,7 @@ prefixes:
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/
   schema: http://schema.org/
+  bioschemas: https://bioschemas.org/
   EDAM: http://edamontology.org/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   FG: https://w3id.org/fair-genomes/ontology/
@@ -37,15 +38,30 @@ classes:
   Study:
     is_a: NamedThing
     description: >-
-      Represents a Study
+      Represents the digital object. It encapsulates omics and other datasets and their metadata.
+    see_also:
+      - bioschemas:Study
+      - FG:Study
+      - NCIT:C63536
     slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
+      - start_date
+      - completion_date
+      - has_record
     slot_usage:
       primary_email:
         pattern: "^\\S+@[\\S+\\.]+\\S+"
+
+  Experiment:
+    see_also:
+      - NCIT:C42790
+
+  Sample:
+    see_also:
+      - bioschemas:Sample
+
+  Run:
+
+  DataSet:
 
   StudyCollection:
     tree_root: true
@@ -69,19 +85,21 @@ slots:
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
+
+  completion_date:
+    slot_uri: FG:completion_date
+    description: The date on which the concluding information for this study is completed.
+    range: datetime
+  start_date:
+    slot_uri: FG:start_date
+    description: The date on which this study began. 
+    range: datetime
   omics_type:
-    range: OmicsType
     description: The type of omics considered.
+    range: OmicsType
+  has_experiment:
+    description: An experiment.
+    range: Experiment
 
 enums:
   OmicsType:
