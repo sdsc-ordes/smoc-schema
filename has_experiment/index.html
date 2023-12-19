@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://sdsc-ordes.github.io/smoc-schema/description/">
+        <link rel="canonical" href="https://sdsc-ordes.github.io/smoc-schema/has_experiment/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: description - smoc-schema</title>
+        <title>Slot: has_experiment - smoc-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-description" class="md-skip">
+        <a href="#slot-has_experiment" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: description
+              Slot: has_experiment
             
           </span>
         </div>
@@ -310,15 +310,15 @@
                 
                   
 
-  <a href="https://github.com/sdsc-ordes/smoc-schema/edit/master/docs/description.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/sdsc-ordes/smoc-schema/edit/master/docs/has_experiment.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-description">Slot: description</h1>
-<p><em>A human-readable description for a thing</em></p>
-<p>URI: <a href="http://schema.org/description">schema:description</a></p>
+<h1 id="slot-has_experiment">Slot: has_experiment</h1>
+<p><em>An experiment.</em></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/has_experiment">smoc_schema:has_experiment</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -332,11 +332,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../NamedThing/">NamedThing</a></td>
-<td>A generic grouping for any identifiable entity</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../Study/">Study</a></td>
 <td>Represents the digital object</td>
 <td>no</td>
@@ -345,7 +340,7 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../Experiment/">Experiment</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -355,15 +350,14 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: description
-description: A human-readable description for a thing
+<pre><code class="language-yaml">name: has_experiment
+description: An experiment.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 rank: 1000
-slot_uri: schema:description
-alias: description
+alias: has_experiment
 domain_of:
-- NamedThing
-range: string
+- Study
+range: Experiment
 
 </code></pre>
 

@@ -337,8 +337,18 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../ReferenceGenome/">ReferenceGenome</a></td>
+<td>Reference assembly of a given genome, consisting of a collection of congiguou...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ReferenceSequence/">ReferenceSequence</a></td>
+<td>A contiguous sequence of DNA part of a reference coordinate system (genome as...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Study/">Study</a></td>
-<td>Represents a Study</td>
+<td>Represents the digital object</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -363,6 +373,8 @@ slot_uri: schema:name
 alias: name
 domain_of:
 - NamedThing
+- ReferenceGenome
+- ReferenceSequence
 range: string
 
 </code></pre>
