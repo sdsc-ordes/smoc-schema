@@ -210,6 +210,10 @@
 
           AlignmentSet --|&gt; DataFormat : format
 
+      AlignmentSet : has_reference
+
+          AlignmentSet --|&gt; ReferenceGenome : has_reference
+
       AlignmentSet : has_sample
 
           AlignmentSet --|&gt; Sample : has_sample
@@ -252,6 +256,12 @@
 <td><a href="../has_sample/">has_sample</a></td>
 <td>0..1 <br/> <a href="../Sample/">Sample</a></td>
 <td>Biological sample included or described by a given thing</td>
+<td><a href="../Record/">Record</a></td>
+</tr>
+<tr>
+<td><a href="../has_reference/">has_reference</a></td>
+<td>0..1 <br/> <a href="../ReferenceGenome/">ReferenceGenome</a></td>
+<td>Specifies the reference coordinate system used by an omics dataset</td>
 <td><a href="../Record/">Record</a></td>
 </tr>
 </tbody>
@@ -331,6 +341,16 @@ attributes:
     - Experiment
     - Record
     range: Sample
+  has_reference:
+    name: has_reference
+    description: Specifies the reference coordinate system used by an omics dataset.
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    alias: has_reference
+    owner: AlignmentSet
+    domain_of:
+    - Record
+    range: ReferenceGenome
 
 </code></pre>
 </details>

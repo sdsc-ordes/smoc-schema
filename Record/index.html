@@ -217,6 +217,10 @@
 
           Record --|&gt; DataFormat : format
 
+      Record : has_reference
+
+          Record --|&gt; ReferenceGenome : has_reference
+
       Record : has_sample
 
           Record --|&gt; Sample : has_sample
@@ -261,6 +265,12 @@
 <td><a href="../has_sample/">has_sample</a></td>
 <td>0..1 <br/> <a href="../Sample/">Sample</a></td>
 <td>Biological sample included or described by a given thing</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../has_reference/">has_reference</a></td>
+<td>0..1 <br/> <a href="../ReferenceGenome/">ReferenceGenome</a></td>
+<td>Specifies the reference coordinate system used by an omics dataset</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -320,6 +330,7 @@ slots:
 - location
 - format
 - has_sample
+- has_reference
 
 </code></pre>
 </details>
@@ -363,6 +374,16 @@ attributes:
     - Experiment
     - Record
     range: Sample
+  has_reference:
+    name: has_reference
+    description: Specifies the reference coordinate system used by an omics dataset.
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    alias: has_reference
+    owner: Record
+    domain_of:
+    - Record
+    range: ReferenceGenome
 
 </code></pre>
 </details>
