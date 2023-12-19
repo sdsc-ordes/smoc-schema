@@ -8,22 +8,34 @@ StudyCollection {
 
 }
 Study {
-    datetime start_date  
-    datetime completion_date  
-    uriorcurie id  
-    string name  
-    string description  
+    datetime start_date
+    datetime completion_date
+    uriorcurie id
+    string name
+    string description
 }
 Experiment {
 
 }
 Record {
-    uriorcurie location  
-    DataFormat format  
+    uriorcurie location
+    DataFormat format
+}
+ReferenceGenome {
+    string name
+    integer taxon_id
+    uriorcurie location
+    uriorcurie source_uri
+}
+ReferenceSequence {
+    string name
+    string sequence_md5
+    uriorcurie location
+    uriorcurie source_uri
 }
 Sample {
-    integer taxon_id  
-    string collector  
+    integer taxon_id
+    string collector
 }
 
 StudyCollection ||--}o Study : "entries"
@@ -31,6 +43,8 @@ Study ||--|o Experiment : "has_experiment"
 Experiment ||--|o Sample : "has_sample"
 Experiment ||--|o Record : "has_record"
 Record ||--|o Sample : "has_sample"
+Record ||--|o ReferenceGenome : "has_reference"
+ReferenceGenome ||--|o ReferenceSequence : "has_sequence"
 ```
 
 ## Website
