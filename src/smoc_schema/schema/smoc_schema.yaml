@@ -74,7 +74,7 @@ classes:
     description: >-
       An entity containing data.
     slots:
-      - uri
+      - location
       - data_format
       - has_sample
       - has_reference
@@ -94,7 +94,7 @@ classes:
       A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
     slots:
       - name
-      - uri
+      - location
       - sequence_md5
       - source_uri
 
@@ -184,9 +184,9 @@ slots:
     description: The organization responsible for collecting a given sample.
     range: string
     multivalued: true
-  uri:
+  location:
     description: >-
-      The uniform resource identifier to use to access a resource,
+      The uniform resource identifier to access a resource,
       either on the web or the filesystem
     range: uri
     required: true
