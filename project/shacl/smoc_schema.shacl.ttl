@@ -1,4 +1,5 @@
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix EDAM: <http://edamontology.org/> .
+@prefix FG: <https://w3id.org/fair-genomes/ontology/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema1: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -9,21 +10,75 @@ schema1:Thing a sh:NodeShape ;
     sh:closed true ;
     sh:description "A generic grouping for any identifiable entity" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:description ],
-        [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:order 0 ;
             sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:order 1 ;
             sh:path schema1:name ] ;
     sh:targetClass schema1:Thing .
+
+smoc_schema:AlignmentSet a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A data entity consisting of genomic intervals aligned to a reference." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class smoc_schema:ReferenceGenome ;
+            sh:description "Specifies the reference coordinate system used by an omics dataset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path smoc_schema:has_reference ],
+        [ sh:description "The uniform resource identifier to use to access a resource, either on the web or the filesystem" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path smoc_schema:uri ],
+        [ sh:description "Data/file format associated with a data entity." ;
+            sh:in ( EDAM:format_3462 EDAM:format_1930 EDAM:format_3915 ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path smoc_schema:format ],
+        [ sh:class smoc_schema:Sample ;
+            sh:description "Biological sample included or described by a given thing." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path smoc_schema:has_sample ] ;
+    sh:targetClass smoc_schema:AlignmentSet .
+
+smoc_schema:Array a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Data entity consisting of an N-dimensional array." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The uniform resource identifier to use to access a resource, either on the web or the filesystem" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path smoc_schema:uri ],
+        [ sh:class smoc_schema:Sample ;
+            sh:description "Biological sample included or described by a given thing." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path smoc_schema:has_sample ],
+        [ sh:class smoc_schema:ReferenceGenome ;
+            sh:description "Specifies the reference coordinate system used by an omics dataset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path smoc_schema:has_reference ],
+        [ sh:description "Data/file format associated with a data entity." ;
+            sh:in ( EDAM:format_3462 EDAM:format_1930 EDAM:format_3915 ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path smoc_schema:format ] ;
+    sh:targetClass smoc_schema:Array .
 
 smoc_schema:StudyCollection a sh:NodeShape ;
     sh:closed true ;
@@ -35,45 +90,166 @@ smoc_schema:StudyCollection a sh:NodeShape ;
             sh:path smoc_schema:entries ] ;
     sh:targetClass smoc_schema:StudyCollection .
 
-smoc_schema:Study a sh:NodeShape ;
+smoc_schema:VariantSet a sh:NodeShape ;
     sh:closed true ;
-    sh:description "Represents a Study" ;
+    sh:description "A data entity consisting of genomic variants relative to a reference." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:integer ;
-            sh:description "Number of years since birth" ;
+    sh:property [ sh:description "Data/file format associated with a data entity." ;
+            sh:in ( EDAM:format_3462 EDAM:format_1930 EDAM:format_3915 ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path smoc_schema:format ],
+        [ sh:description "The uniform resource identifier to use to access a resource, either on the web or the filesystem" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path smoc_schema:uri ],
+        [ sh:class smoc_schema:ReferenceGenome ;
+            sh:description "Specifies the reference coordinate system used by an omics dataset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path smoc_schema:has_reference ],
+        [ sh:class smoc_schema:Sample ;
+            sh:description "Biological sample included or described by a given thing." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path smoc_schema:has_sample ] ;
+    sh:targetClass smoc_schema:VariantSet .
+
+smoc_schema:Assay a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A coordinated set of actions designed to generate data from samples." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class smoc_schema:Sample ;
+            sh:description "Biological sample included or described by a given thing." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 0 ;
+            sh:path smoc_schema:has_sample ],
+        [ sh:class smoc_schema:DataEntity ;
+            sh:description "Data entity included in a given collection." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 1 ;
+            sh:path smoc_schema:has_data ] ;
+    sh:targetClass smoc_schema:Assay .
+
+smoc_schema:DataEntity a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "An entity containing data." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class smoc_schema:Sample ;
+            sh:description "Biological sample included or described by a given thing." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path smoc_schema:has_sample ],
+        [ sh:class smoc_schema:ReferenceGenome ;
+            sh:description "Specifies the reference coordinate system used by an omics dataset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path smoc_schema:has_reference ],
+        [ sh:description "The uniform resource identifier to use to access a resource, either on the web or the filesystem" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path smoc_schema:uri ],
+        [ sh:description "Data/file format associated with a data entity." ;
+            sh:in ( EDAM:format_3462 EDAM:format_1930 EDAM:format_3915 ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path smoc_schema:format ] ;
+    sh:targetClass smoc_schema:DataEntity .
+
+smoc_schema:ReferenceSequence a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A contiguous sequence of DNA part of a reference coordinate system (genome assembly)." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The pre-computed hash uniquely representing a biological sequence. Calculated as the MD5 of the upper-case sequence excluding all whitespace characters (this is equivalent to SQ:M5 in SAM)." ;
             sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path smoc_schema:age_in_years ],
-        [ sh:description "living or dead status" ;
-            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+            sh:path smoc_schema:sequence_md5 ;
+            sh:pattern "^[a-f0-9]{32}$" ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:name ],
+        [ sh:description "The URI from which a resource was obtained." ;
             sh:maxCount 1 ;
             sh:order 3 ;
-            sh:path smoc_schema:vital_status ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
+            sh:path smoc_schema:source_uri ],
+        [ sh:description "The uniform resource identifier to use to access a resource, either on the web or the filesystem" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path smoc_schema:uri ] ;
+    sh:targetClass smoc_schema:ReferenceSequence .
+
+smoc_schema:Study a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Represents the digital object. It encapsulates omics and other datasets and their metadata." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class smoc_schema:Assay ;
+            sh:description "An assay that was performed as part of a given thing." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path smoc_schema:has_assay ],
+        [ sh:description "The date on which this study began." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path FG:start_date ],
+        [ sh:description "The date on which the concluding information for this study is completed." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path FG:completion_date ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path schema1:name ],
+        [ sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 5 ;
-            sh:path schema1:name ],
+            sh:path schema1:description ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:description ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date on which a person is born" ;
-            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path schema1:identifier ] ;
+    sh:targetClass smoc_schema:Study .
+
+smoc_schema:ReferenceGenome a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs)." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class smoc_schema:ReferenceSequence ;
+            sh:description "Denotes that a sequence beolongs to a collection (e.g. a reference genome)." ;
+            sh:nodeKind sh:BlankNode ;
             sh:order 1 ;
-            sh:path schema1:birthDate ],
-        [ sh:datatype xsd:string ;
-            sh:description "The main email address of a person" ;
+            sh:path smoc_schema:has_sequence ],
+        [ sh:description "The URI from which a resource was obtained." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path smoc_schema:source_uri ],
+        [ sh:description "The taxid number describing the taxonomic range of a sample." ;
+            sh:order 2 ;
+            sh:path smoc_schema:taxon_id ],
+        [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ] ;
-    sh:targetClass smoc_schema:Study .
+            sh:path schema1:name ] ;
+    sh:targetClass smoc_schema:ReferenceGenome .
+
+smoc_schema:Sample a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A biological sample used in assays. Examples include a whole organism, tissue or cell line." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The organization responsible for collecting a given sample." ;
+            sh:order 1 ;
+            sh:path smoc_schema:collector ],
+        [ sh:description "The taxid number describing the taxonomic range of a sample." ;
+            sh:order 0 ;
+            sh:path smoc_schema:taxon_id ] ;
+    sh:targetClass smoc_schema:Sample .
 

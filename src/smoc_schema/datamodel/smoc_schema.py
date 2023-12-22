@@ -1,5 +1,5 @@
-# Auto generated from smoc_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2023-12-18T22:01:09
+# Auto generated from smoc_schema.yaml by pythongen.py version: 0.9.0
+# Generation date: 2023-12-22T13:25:48
 # Schema: smoc-schema
 #
 # id: https://w3id.org/sdsc-ordes/smoc-schema
@@ -7,6 +7,7 @@
 # license: MIT
 
 import dataclasses
+import sys
 import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
@@ -21,8 +22,8 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import Date, Integer, String, Uriorcurie
-from linkml_runtime.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_runtime.linkml_model.types import Datetime, Integer, String, Uri, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URI, URIorCURIE, XSDDateTime
 
 metamodel_version = "1.7.0"
 version = None
@@ -31,12 +32,16 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
-PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
+EDAM = CurieNamespace('EDAM', 'http://edamontology.org/')
+FG = CurieNamespace('FG', 'https://w3id.org/fair-genomes/ontology/')
+NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/')
+BIOSCHEMAS = CurieNamespace('bioschemas', 'https://bioschemas.org/')
 EXAMPLE = CurieNamespace('example', 'https://example.org/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SMOC_SCHEMA = CurieNamespace('smoc_schema', 'https://w3id.org/sdsc-ordes/smoc-schema/')
+SPHN = CurieNamespace('sphn', 'https://biomedit.ch/rdf/sphn-schema/sphn#')
 DEFAULT_ = SMOC_SCHEMA
 
 
@@ -85,7 +90,7 @@ class NamedThing(YAMLRoot):
 @dataclass
 class Study(NamedThing):
     """
-    Represents a Study
+    Represents the digital object. It encapsulates omics and other datasets and their metadata.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -95,10 +100,9 @@ class Study(NamedThing):
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Study
 
     id: Union[str, StudyId] = None
-    primary_email: Optional[str] = None
-    birth_date: Optional[Union[str, XSDDate]] = None
-    age_in_years: Optional[int] = None
-    vital_status: Optional[Union[str, "PersonStatus"]] = None
+    start_date: Union[str, XSDDateTime] = None
+    completion_date: Optional[Union[str, XSDDateTime]] = None
+    has_assay: Optional[Union[Union[dict, "Assay"], List[Union[dict, "Assay"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -106,20 +110,223 @@ class Study(NamedThing):
         if not isinstance(self.id, StudyId):
             self.id = StudyId(self.id)
 
-        if self.primary_email is not None and not isinstance(self.primary_email, str):
-            self.primary_email = str(self.primary_email)
+        if self._is_empty(self.start_date):
+            self.MissingRequiredField("start_date")
+        if not isinstance(self.start_date, XSDDateTime):
+            self.start_date = XSDDateTime(self.start_date)
 
-        if self.birth_date is not None and not isinstance(self.birth_date, XSDDate):
-            self.birth_date = XSDDate(self.birth_date)
+        if self.completion_date is not None and not isinstance(self.completion_date, XSDDateTime):
+            self.completion_date = XSDDateTime(self.completion_date)
 
-        if self.age_in_years is not None and not isinstance(self.age_in_years, int):
-            self.age_in_years = int(self.age_in_years)
-
-        if self.vital_status is not None and not isinstance(self.vital_status, PersonStatus):
-            self.vital_status = PersonStatus(self.vital_status)
+        if not isinstance(self.has_assay, list):
+            self.has_assay = [self.has_assay] if self.has_assay is not None else []
+        self.has_assay = [v if isinstance(v, Assay) else Assay(**as_dict(v)) for v in self.has_assay]
 
         super().__post_init__(**kwargs)
 
+
+@dataclass
+class Assay(YAMLRoot):
+    """
+    A coordinated set of actions designed to generate data from samples.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["Assay"]
+    class_class_curie: ClassVar[str] = "smoc_schema:Assay"
+    class_name: ClassVar[str] = "Assay"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Assay
+
+    has_sample: Optional[Union[Union[dict, "Sample"], List[Union[dict, "Sample"]]]] = empty_list()
+    has_data: Optional[Union[Union[dict, "DataEntity"], List[Union[dict, "DataEntity"]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if not isinstance(self.has_sample, list):
+            self.has_sample = [self.has_sample] if self.has_sample is not None else []
+        self.has_sample = [v if isinstance(v, Sample) else Sample(**as_dict(v)) for v in self.has_sample]
+
+        self._normalize_inlined_as_dict(slot_name="has_data", slot_type=DataEntity, key_name="uri", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Sample(YAMLRoot):
+    """
+    A biological sample used in assays. Examples include a whole organism, tissue or cell line.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["Sample"]
+    class_class_curie: ClassVar[str] = "smoc_schema:Sample"
+    class_name: ClassVar[str] = "Sample"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Sample
+
+    taxon_id: Optional[Union[int, List[int]]] = empty_list()
+    collector: Optional[Union[str, List[str]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if not isinstance(self.taxon_id, list):
+            self.taxon_id = [self.taxon_id] if self.taxon_id is not None else []
+        self.taxon_id = [v if isinstance(v, int) else int(v) for v in self.taxon_id]
+
+        if not isinstance(self.collector, list):
+            self.collector = [self.collector] if self.collector is not None else []
+        self.collector = [v if isinstance(v, str) else str(v) for v in self.collector]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class DataEntity(YAMLRoot):
+    """
+    An entity containing data.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["DataEntity"]
+    class_class_curie: ClassVar[str] = "smoc_schema:DataEntity"
+    class_name: ClassVar[str] = "DataEntity"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.DataEntity
+
+    uri: Union[str, URI] = None
+    format: Union[str, "DataFormat"] = None
+    has_sample: Optional[Union[Union[dict, Sample], List[Union[dict, Sample]]]] = empty_list()
+    has_reference: Optional[Union[dict, "ReferenceGenome"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.uri):
+            self.MissingRequiredField("uri")
+        if not isinstance(self.uri, URI):
+            self.uri = URI(self.uri)
+
+        if self._is_empty(self.format):
+            self.MissingRequiredField("format")
+        if not isinstance(self.format, DataFormat):
+            self.format = DataFormat(self.format)
+
+        if not isinstance(self.has_sample, list):
+            self.has_sample = [self.has_sample] if self.has_sample is not None else []
+        self.has_sample = [v if isinstance(v, Sample) else Sample(**as_dict(v)) for v in self.has_sample]
+
+        if self.has_reference is not None and not isinstance(self.has_reference, ReferenceGenome):
+            self.has_reference = ReferenceGenome(**as_dict(self.has_reference))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class ReferenceGenome(YAMLRoot):
+    """
+    Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs).
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["ReferenceGenome"]
+    class_class_curie: ClassVar[str] = "smoc_schema:ReferenceGenome"
+    class_name: ClassVar[str] = "ReferenceGenome"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.ReferenceGenome
+
+    name: Optional[str] = None
+    has_sequence: Optional[Union[Union[dict, "ReferenceSequence"], List[Union[dict, "ReferenceSequence"]]]] = empty_list()
+    taxon_id: Optional[Union[int, List[int]]] = empty_list()
+    source_uri: Optional[Union[str, URI]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        self._normalize_inlined_as_dict(slot_name="has_sequence", slot_type=ReferenceSequence, key_name="uri", keyed=False)
+
+        if not isinstance(self.taxon_id, list):
+            self.taxon_id = [self.taxon_id] if self.taxon_id is not None else []
+        self.taxon_id = [v if isinstance(v, int) else int(v) for v in self.taxon_id]
+
+        if self.source_uri is not None and not isinstance(self.source_uri, URI):
+            self.source_uri = URI(self.source_uri)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class ReferenceSequence(YAMLRoot):
+    """
+    A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["ReferenceSequence"]
+    class_class_curie: ClassVar[str] = "smoc_schema:ReferenceSequence"
+    class_name: ClassVar[str] = "ReferenceSequence"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.ReferenceSequence
+
+    uri: Union[str, URI] = None
+    name: Optional[str] = None
+    sequence_md5: Optional[str] = None
+    source_uri: Optional[Union[str, URI]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.uri):
+            self.MissingRequiredField("uri")
+        if not isinstance(self.uri, URI):
+            self.uri = URI(self.uri)
+
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.sequence_md5 is not None and not isinstance(self.sequence_md5, str):
+            self.sequence_md5 = str(self.sequence_md5)
+
+        if self.source_uri is not None and not isinstance(self.source_uri, URI):
+            self.source_uri = URI(self.source_uri)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class AlignmentSet(DataEntity):
+    """
+    A data entity consisting of genomic intervals aligned to a reference.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["AlignmentSet"]
+    class_class_curie: ClassVar[str] = "smoc_schema:AlignmentSet"
+    class_name: ClassVar[str] = "AlignmentSet"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.AlignmentSet
+
+    uri: Union[str, URI] = None
+    format: Union[str, "DataFormat"] = None
+
+@dataclass
+class VariantSet(DataEntity):
+    """
+    A data entity consisting of genomic variants relative to a reference.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["VariantSet"]
+    class_class_curie: ClassVar[str] = "smoc_schema:VariantSet"
+    class_name: ClassVar[str] = "VariantSet"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.VariantSet
+
+    uri: Union[str, URI] = None
+    format: Union[str, "DataFormat"] = None
+
+@dataclass
+class Array(DataEntity):
+    """
+    Data entity consisting of an N-dimensional array.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SMOC_SCHEMA["Array"]
+    class_class_curie: ClassVar[str] = "smoc_schema:Array"
+    class_name: ClassVar[str] = "Array"
+    class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Array
+
+    uri: Union[str, URI] = None
+    format: Union[str, "DataFormat"] = None
 
 @dataclass
 class StudyCollection(YAMLRoot):
@@ -142,22 +349,39 @@ class StudyCollection(YAMLRoot):
 
 
 # Enumerations
-class PersonStatus(EnumDefinitionImpl):
+class OmicsType(EnumDefinitionImpl):
 
-    ALIVE = PermissibleValue(
-        text="ALIVE",
-        description="the person is living",
-        meaning=PATO["0001421"])
-    DEAD = PermissibleValue(
-        text="DEAD",
-        description="the person is deceased",
-        meaning=PATO["0001422"])
-    UNKNOWN = PermissibleValue(
-        text="UNKNOWN",
-        description="the vital status is not known")
+    GENOMICS = PermissibleValue(text="GENOMICS",
+                                       description="The study of the structure, function, expression, evolution, mapping and editing of genomes.",
+                                       meaning=NCIT["C84343"])
+    TRANSCRIPTOMICS = PermissibleValue(text="TRANSCRIPTOMICS",
+                                                     description="The study of the complete set of RNA transcripts that are produced by the genome.",
+                                                     meaning=NCIT["C153189"])
+    METABOLOMICS = PermissibleValue(text="METABOLOMICS",
+                                               description="The study of biological metabolic profiles.",
+                                               meaning=NCIT["C49019"])
+    PROTEOMICS = PermissibleValue(text="PROTEOMICS",
+                                           description="The global analysis of cellular proteins.",
+                                           meaning=NCIT["C20085"])
 
     _defn = EnumDefinition(
-        name="PersonStatus",
+        name="OmicsType",
+    )
+
+class DataFormat(EnumDefinitionImpl):
+
+    CRAM = PermissibleValue(text="CRAM",
+                               description="Referenced-based compression of alignment format.",
+                               meaning=EDAM["format_3462"])
+    FASTQ = PermissibleValue(text="FASTQ",
+                                 description="FASTQ short read format with sequence and any type of quality scores.",
+                                 meaning=EDAM["format_1930"])
+    Zarr = PermissibleValue(text="Zarr",
+                               description="Chunked, compressed N-dimensional arrays.",
+                               meaning=EDAM["format_3915"])
+
+    _defn = EnumDefinition(
+        name="DataFormat",
     )
 
 # Slots
@@ -173,21 +397,48 @@ slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
 slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
                    model_uri=SMOC_SCHEMA.description, domain=None, range=Optional[str])
 
-slots.primary_email = Slot(uri=SCHEMA.email, name="primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=SMOC_SCHEMA.primary_email, domain=None, range=Optional[str])
+slots.completion_date = Slot(uri=FG.completion_date, name="completion_date", curie=FG.curie('completion_date'),
+                   model_uri=SMOC_SCHEMA.completion_date, domain=None, range=Optional[Union[str, XSDDateTime]])
 
-slots.birth_date = Slot(uri=SCHEMA.birthDate, name="birth_date", curie=SCHEMA.curie('birthDate'),
-                   model_uri=SMOC_SCHEMA.birth_date, domain=None, range=Optional[Union[str, XSDDate]])
+slots.start_date = Slot(uri=FG.start_date, name="start_date", curie=FG.curie('start_date'),
+                   model_uri=SMOC_SCHEMA.start_date, domain=None, range=Union[str, XSDDateTime])
 
-slots.age_in_years = Slot(uri=SMOC_SCHEMA.age_in_years, name="age_in_years", curie=SMOC_SCHEMA.curie('age_in_years'),
-                   model_uri=SMOC_SCHEMA.age_in_years, domain=None, range=Optional[int])
+slots.omics_type = Slot(uri=SMOC_SCHEMA.omics_type, name="omics_type", curie=SMOC_SCHEMA.curie('omics_type'),
+                   model_uri=SMOC_SCHEMA.omics_type, domain=None, range=Union[Union[str, "OmicsType"], List[Union[str, "OmicsType"]]])
 
-slots.vital_status = Slot(uri=SMOC_SCHEMA.vital_status, name="vital_status", curie=SMOC_SCHEMA.curie('vital_status'),
-                   model_uri=SMOC_SCHEMA.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
+slots.has_assay = Slot(uri=SMOC_SCHEMA.has_assay, name="has_assay", curie=SMOC_SCHEMA.curie('has_assay'),
+                   model_uri=SMOC_SCHEMA.has_assay, domain=None, range=Optional[Union[Union[dict, Assay], List[Union[dict, Assay]]]])
+
+slots.has_sample = Slot(uri=SMOC_SCHEMA.has_sample, name="has_sample", curie=SMOC_SCHEMA.curie('has_sample'),
+                   model_uri=SMOC_SCHEMA.has_sample, domain=None, range=Optional[Union[Union[dict, Sample], List[Union[dict, Sample]]]])
+
+slots.has_data = Slot(uri=SMOC_SCHEMA.has_data, name="has_data", curie=SMOC_SCHEMA.curie('has_data'),
+                   model_uri=SMOC_SCHEMA.has_data, domain=None, range=Optional[Union[Union[dict, DataEntity], List[Union[dict, DataEntity]]]])
+
+slots.format = Slot(uri=SMOC_SCHEMA.format, name="format", curie=SMOC_SCHEMA.curie('format'),
+                   model_uri=SMOC_SCHEMA.format, domain=None, range=Union[str, "DataFormat"])
+
+slots.taxon_id = Slot(uri=SMOC_SCHEMA.taxon_id, name="taxon_id", curie=SMOC_SCHEMA.curie('taxon_id'),
+                   model_uri=SMOC_SCHEMA.taxon_id, domain=None, range=Optional[Union[int, List[int]]])
+
+slots.collector = Slot(uri=SMOC_SCHEMA.collector, name="collector", curie=SMOC_SCHEMA.curie('collector'),
+                   model_uri=SMOC_SCHEMA.collector, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.uri = Slot(uri=SMOC_SCHEMA.uri, name="uri", curie=SMOC_SCHEMA.curie('uri'),
+                   model_uri=SMOC_SCHEMA.uri, domain=None, range=Union[str, URI])
+
+slots.sequence_md5 = Slot(uri=SMOC_SCHEMA.sequence_md5, name="sequence_md5", curie=SMOC_SCHEMA.curie('sequence_md5'),
+                   model_uri=SMOC_SCHEMA.sequence_md5, domain=None, range=Optional[str],
+                   pattern=re.compile(r'^[a-f0-9]{32}$'))
+
+slots.source_uri = Slot(uri=SMOC_SCHEMA.source_uri, name="source_uri", curie=SMOC_SCHEMA.curie('source_uri'),
+                   model_uri=SMOC_SCHEMA.source_uri, domain=None, range=Optional[Union[str, URI]])
+
+slots.has_sequence = Slot(uri=SMOC_SCHEMA.has_sequence, name="has_sequence", curie=SMOC_SCHEMA.curie('has_sequence'),
+                   model_uri=SMOC_SCHEMA.has_sequence, domain=None, range=Optional[Union[Union[dict, ReferenceSequence], List[Union[dict, ReferenceSequence]]]])
+
+slots.has_reference = Slot(uri=SMOC_SCHEMA.has_reference, name="has_reference", curie=SMOC_SCHEMA.curie('has_reference'),
+                   model_uri=SMOC_SCHEMA.has_reference, domain=None, range=Optional[Union[dict, ReferenceGenome]])
 
 slots.studyCollection__entries = Slot(uri=SMOC_SCHEMA.entries, name="studyCollection__entries", curie=SMOC_SCHEMA.curie('entries'),
                    model_uri=SMOC_SCHEMA.studyCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, StudyId], Union[dict, Study]], List[Union[dict, Study]]]])
-
-slots.Study_primary_email = Slot(uri=SCHEMA.email, name="Study_primary_email", curie=SCHEMA.curie('email'),
-                   model_uri=SMOC_SCHEMA.Study_primary_email, domain=Study, range=Optional[str],
-                   pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
