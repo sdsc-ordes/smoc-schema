@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/Array/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Array - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -207,9 +207,19 @@
       DataEntity &lt;|-- Array
 
       Array : data_format
+
+          Array --|&gt; DataFormat : data_format
+
       Array : has_reference
+
+          Array --|&gt; ReferenceGenome : has_reference
+
       Array : has_sample
-      Array : uri
+
+          Array --|&gt; Sample : has_sample
+
+      Array : location
+
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
@@ -231,9 +241,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../uri/">uri</a></td>
-<td>1..1 <br/> <a href="../uri/">uri</a></td>
-<td>The uniform resource identifier to use to access a resource, either on the we...</td>
+<td><a href="../location/">location</a></td>
+<td>1..1 <br/> <a href="../Uri/">Uri</a></td>
+<td>The uniform resource identifier to access a resource, either on the web or th...</td>
 <td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
@@ -287,7 +297,6 @@
 <pre><code class="language-yaml">name: Array
 description: Data entity consisting of an N-dimensional array.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 is_a: DataEntity
 
 </code></pre>
@@ -297,16 +306,15 @@ is_a: DataEntity
 <pre><code class="language-yaml">name: Array
 description: Data entity consisting of an N-dimensional array.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 is_a: DataEntity
 attributes:
-  uri:
-    name: uri
-    description: The uniform resource identifier to use to access a resource, either
-      on the web or the filesystem
+  location:
+    name: location
+    description: The uniform resource identifier to access a resource, either on the
+      web or the filesystem
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
-    alias: uri
+    alias: location
     owner: Array
     domain_of:
     - DataEntity

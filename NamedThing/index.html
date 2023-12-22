@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/NamedThing/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: NamedThing - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -207,8 +207,11 @@
       NamedThing &lt;|-- Study
 
       NamedThing : description
+
       NamedThing : id
+
       NamedThing : name
+
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
@@ -231,19 +234,19 @@
 <tbody>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>A unique identifier for a thing</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
-<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable description for a thing</td>
 <td>direct</td>
 </tr>
@@ -280,7 +283,6 @@
 <pre><code class="language-yaml">name: NamedThing
 description: A generic grouping for any identifiable entity
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 slots:
 - id
 - name
@@ -294,7 +296,6 @@ class_uri: schema:Thing
 <pre><code class="language-yaml">name: NamedThing
 description: A generic grouping for any identifiable entity
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 attributes:
   id:
     name: id

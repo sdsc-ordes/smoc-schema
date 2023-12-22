@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/Sample/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Sample - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -210,7 +210,9 @@
 <div class="mermaid"> classDiagram
     class Sample
       Sample : collector
+
       Sample : taxon_id
+
 
 </div>
 <!-- no inheritance hierarchy -->
@@ -227,13 +229,13 @@
 <tbody>
 <tr>
 <td><a href="../taxon_id/">taxon_id</a></td>
-<td>0..* <br/> <a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+<td>0..* <br/> <a href="../Integer/">Integer</a></td>
 <td>The taxid number describing the taxonomic range of a sample</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../collector/">collector</a></td>
-<td>0..* <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td>0..* <br/> <a href="../String/">String</a></td>
 <td>The organization responsible for collecting a given sample</td>
 <td>direct</td>
 </tr>
@@ -320,7 +322,6 @@ description: A biological sample used in assays. Examples include a whole organi
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 see_also:
 - bioschemas:Sample
-rank: 1000
 slots:
 - taxon_id
 - collector
@@ -335,7 +336,6 @@ description: A biological sample used in assays. Examples include a whole organi
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 see_also:
 - bioschemas:Sample
-rank: 1000
 attributes:
   taxon_id:
     name: taxon_id

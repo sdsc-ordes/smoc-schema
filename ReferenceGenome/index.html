@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/ReferenceGenome/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: ReferenceGenome - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -205,9 +205,15 @@
 <div class="mermaid"> classDiagram
     class ReferenceGenome
       ReferenceGenome : has_sequence
+
+          ReferenceGenome --|&gt; ReferenceSequence : has_sequence
+
       ReferenceGenome : name
+
       ReferenceGenome : source_uri
+
       ReferenceGenome : taxon_id
+
 
 </div>
 <!-- no inheritance hierarchy -->
@@ -224,7 +230,7 @@
 <tbody>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td>direct</td>
 </tr>
@@ -236,13 +242,13 @@
 </tr>
 <tr>
 <td><a href="../taxon_id/">taxon_id</a></td>
-<td>0..* <br/> <a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+<td>0..* <br/> <a href="../Integer/">Integer</a></td>
 <td>The taxid number describing the taxonomic range of a sample</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../source_uri/">source_uri</a></td>
-<td>0..1 <br/> <a href="../uri/">uri</a></td>
+<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
 <td>The URI from which a resource was obtained</td>
 <td>direct</td>
 </tr>
@@ -317,7 +323,6 @@
 description: Reference assembly of a given genome, consisting of a collection of congiguous
   sequences (contigs).
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 slots:
 - name
 - has_sequence
@@ -332,7 +337,6 @@ slots:
 description: Reference assembly of a given genome, consisting of a collection of congiguous
   sequences (contigs).
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 attributes:
   name:
     name: name

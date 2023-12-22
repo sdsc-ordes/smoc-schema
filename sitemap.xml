@@ -21,6 +21,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Boolean/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Curie/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://sdsc-ordes.github.io/smoc-schema/DataEntity/</loc>
          <lastmod>2023-12-22</lastmod>
          <changefreq>daily</changefreq>
@@ -31,12 +41,72 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Date/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/DateOrDatetime/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Datetime/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Decimal/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Double/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://sdsc-ordes.github.io/smoc-schema/Experiment/</loc>
          <lastmod>2023-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Float/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Integer/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Jsonpath/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Jsonpointer/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://sdsc-ordes.github.io/smoc-schema/NamedThing/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Ncname/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Nodeidentifier/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Objectidentifier/</loc>
          <lastmod>2023-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -66,12 +136,37 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Sparqlpath/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/String/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://sdsc-ordes.github.io/smoc-schema/Study/</loc>
          <lastmod>2023-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://sdsc-ordes.github.io/smoc-schema/StudyCollection/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Time/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Uri/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/Uriorcurie/</loc>
          <lastmod>2023-12-22</lastmod>
          <changefreq>daily</changefreq>
     </url>

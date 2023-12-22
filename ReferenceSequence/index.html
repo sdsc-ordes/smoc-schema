@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/ReferenceSequence/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: ReferenceSequence - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -204,10 +204,14 @@
 <p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/ReferenceSequence">smoc_schema:ReferenceSequence</a></p>
 <div class="mermaid"> classDiagram
     class ReferenceSequence
+      ReferenceSequence : location
+
       ReferenceSequence : name
+
       ReferenceSequence : sequence_md5
+
       ReferenceSequence : source_uri
-      ReferenceSequence : uri
+
 
 </div>
 <!-- no inheritance hierarchy -->
@@ -224,25 +228,25 @@
 <tbody>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A human-readable name for a thing</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../uri/">uri</a></td>
-<td>1..1 <br/> <a href="../uri/">uri</a></td>
-<td>The uniform resource identifier to use to access a resource, either on the we...</td>
+<td><a href="../location/">location</a></td>
+<td>1..1 <br/> <a href="../Uri/">Uri</a></td>
+<td>The uniform resource identifier to access a resource, either on the web or th...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../sequence_md5/">sequence_md5</a></td>
-<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The pre-computed hash uniquely representing a biological sequence</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../source_uri/">source_uri</a></td>
-<td>0..1 <br/> <a href="../uri/">uri</a></td>
+<td>0..1 <br/> <a href="../Uri/">Uri</a></td>
 <td>The URI from which a resource was obtained</td>
 <td>direct</td>
 </tr>
@@ -299,10 +303,9 @@
 description: A contiguous sequence of DNA part of a reference coordinate system (genome
   assembly).
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 slots:
 - name
-- uri
+- location
 - sequence_md5
 - source_uri
 
@@ -314,7 +317,6 @@ slots:
 description: A contiguous sequence of DNA part of a reference coordinate system (genome
   assembly).
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-rank: 1000
 attributes:
   name:
     name: name
@@ -329,13 +331,13 @@ attributes:
     - ReferenceGenome
     - ReferenceSequence
     range: string
-  uri:
-    name: uri
-    description: The uniform resource identifier to use to access a resource, either
-      on the web or the filesystem
+  location:
+    name: location
+    description: The uniform resource identifier to access a resource, either on the
+      web or the filesystem
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
-    alias: uri
+    alias: location
     owner: ReferenceSequence
     domain_of:
     - DataEntity

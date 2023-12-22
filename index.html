@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://sdsc-ordes.github.io/smoc-schema/">
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
     
     
       
@@ -381,8 +381,8 @@
 
 <h1 id="smoc-schema">smoc-schema</h1>
 <p>Metadata schema for the SMOC Multi-Omics Digital Object</p>
-<p>URI: https://w3id.org/sdsc-ordes/smoc-schema
-Name: smoc-schema</p>
+<p>URI: https://w3id.org/sdsc-ordes/smoc-schema</p>
+<p>Name: smoc-schema</p>
 <h2 id="classes">Classes</h2>
 <table>
 <thead>
@@ -393,48 +393,48 @@ Name: smoc-schema</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="AlignmentSet/">AlignmentSet</a></td>
-<td>A data entity consisting of genomic intervals aligned to a reference</td>
-</tr>
-<tr>
-<td><a href="Array/">Array</a></td>
-<td>Data entity consisting of an N-dimensional array</td>
-</tr>
-<tr>
 <td><a href="Assay/">Assay</a></td>
-<td>A coordinated set of actions designed to generate data from samples</td>
+<td>A coordinated set of actions designed to generate data from samples.</td>
 </tr>
 <tr>
 <td><a href="DataEntity/">DataEntity</a></td>
-<td>An entity containing data</td>
+<td>An entity containing data.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AlignmentSet/">AlignmentSet</a></td>
+<td>A data entity consisting of genomic intervals aligned to a reference.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Array/">Array</a></td>
+<td>Data entity consisting of an N-dimensional array.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="VariantSet/">VariantSet</a></td>
+<td>A data entity consisting of genomic variants relative to a reference.</td>
 </tr>
 <tr>
 <td><a href="NamedThing/">NamedThing</a></td>
 <td>A generic grouping for any identifiable entity</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Study/">Study</a></td>
+<td>Represents the digital object. It encapsulates omics and other datasets and their metadata.</td>
+</tr>
+<tr>
 <td><a href="ReferenceGenome/">ReferenceGenome</a></td>
-<td>Reference assembly of a given genome, consisting of a collection of congiguou...</td>
+<td>Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs).</td>
 </tr>
 <tr>
 <td><a href="ReferenceSequence/">ReferenceSequence</a></td>
-<td>A contiguous sequence of DNA part of a reference coordinate system (genome as...</td>
+<td>A contiguous sequence of DNA part of a reference coordinate system (genome assembly).</td>
 </tr>
 <tr>
 <td><a href="Sample/">Sample</a></td>
-<td>A biological sample used in assays</td>
-</tr>
-<tr>
-<td><a href="Study/">Study</a></td>
-<td>Represents the digital object</td>
+<td>A biological sample used in assays. Examples include a whole organism, tissue or cell line.</td>
 </tr>
 <tr>
 <td><a href="StudyCollection/">StudyCollection</a></td>
 <td>A holder for Study objects</td>
-</tr>
-<tr>
-<td><a href="VariantSet/">VariantSet</a></td>
-<td>A data entity consisting of genomic variants relative to a reference</td>
 </tr>
 </tbody>
 </table>
@@ -492,6 +492,10 @@ Name: smoc-schema</p>
 <td>A unique identifier for a thing</td>
 </tr>
 <tr>
+<td><a href="location/">location</a></td>
+<td>The uniform resource identifier to access a resource, either on the web or th...</td>
+</tr>
+<tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for a thing</td>
 </tr>
@@ -514,10 +518,6 @@ Name: smoc-schema</p>
 <tr>
 <td><a href="taxon_id/">taxon_id</a></td>
 <td>The taxid number describing the taxonomic range of a sample</td>
-</tr>
-<tr>
-<td><a href="uri/">uri</a></td>
-<td>The uniform resource identifier to use to access a resource, either on the we...</td>
 </tr>
 </tbody>
 </table>
@@ -550,79 +550,79 @@ Name: smoc-schema</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a></td>
+<td><a href="Boolean/">Boolean</a></td>
 <td>A binary (true or false) value</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td><a href="Curie/">Curie</a></td>
 <td>a compact URI</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a></td>
+<td><a href="Date/">Date</a></td>
 <td>a date (year, month and day) in an idealized calendar</td>
 </tr>
 <tr>
-<td><a href="https://w3id.org/linkml/DateOrDatetime">linkml:DateOrDatetime</a></td>
+<td><a href="DateOrDatetime/">DateOrDatetime</a></td>
 <td>Either a date or a datetime</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td>
+<td><a href="Datetime/">Datetime</a></td>
 <td>The combination of a date and time</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#decimal">xsd:decimal</a></td>
+<td><a href="Decimal/">Decimal</a></td>
 <td>A real number with arbitrary precision that conforms to the xsd:decimal speci...</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a></td>
+<td><a href="Double/">Double</a></td>
 <td>A real number that conforms to the xsd:double specification</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#float">xsd:float</a></td>
+<td><a href="Float/">Float</a></td>
 <td>A real number that conforms to the xsd:float specification</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+<td><a href="Integer/">Integer</a></td>
 <td>An integer</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td><a href="Jsonpath/">Jsonpath</a></td>
 <td>A string encoding a JSON Path</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td><a href="Jsonpointer/">Jsonpointer</a></td>
 <td>A string encoding a JSON Pointer</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td><a href="Ncname/">Ncname</a></td>
 <td>Prefix part of CURIE</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/ns/shex#nonLiteral">shex:nonLiteral</a></td>
+<td><a href="Nodeidentifier/">Nodeidentifier</a></td>
 <td>A URI, CURIE or BNODE that represents a node in a model</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/ns/shex#iri">shex:iri</a></td>
+<td><a href="Objectidentifier/">Objectidentifier</a></td>
 <td>A URI or CURIE that represents an object in the model</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td><a href="Sparqlpath/">Sparqlpath</a></td>
 <td>A string encoding a SPARQL Property Path</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
+<td><a href="String/">String</a></td>
 <td>A character string</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#time">xsd:time</a></td>
+<td><a href="Time/">Time</a></td>
 <td>A time object represents a (local) time of day, independent of any particular...</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+<td><a href="Uri/">Uri</a></td>
 <td>a complete URI</td>
 </tr>
 <tr>
-<td><a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
+<td><a href="Uriorcurie/">Uriorcurie</a></td>
 <td>a URI or a CURIE</td>
 </tr>
 </tbody>
