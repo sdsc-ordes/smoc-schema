@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/Experiment/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Experiment - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -210,13 +210,7 @@
 <div class="mermaid"> classDiagram
     class Experiment
       Experiment : has_record
-
-          Experiment --|&gt; Record : has_record
-
       Experiment : has_sample
-
-          Experiment --|&gt; Sample : has_sample
-
 
 </div>
 <!-- no inheritance hierarchy -->
@@ -302,6 +296,7 @@ description: A coordinated set of actions designed to generate data. An experime
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 see_also:
 - NCIT:C42790
+rank: 1000
 slots:
 - has_sample
 - has_record
@@ -316,6 +311,7 @@ description: A coordinated set of actions designed to generate data. An experime
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 see_also:
 - NCIT:C42790
+rank: 1000
 attributes:
   has_sample:
     name: has_sample

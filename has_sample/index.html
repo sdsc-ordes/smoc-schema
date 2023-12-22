@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://sdsc-ordes.github.io/smoc-schema/has_sample/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -327,34 +327,28 @@
 <tr>
 <th>Name</th>
 <th>Description</th>
-<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>A coordinated set of actions designed to generate data</td>
-<td>no</td>
+<td><a href="../Assay/">Assay</a></td>
+<td>A coordinated set of actions designed to generate data from samples</td>
 </tr>
 <tr>
-<td><a href="../Record/">Record</a></td>
-<td>An individual data record</td>
-<td>no</td>
+<td><a href="../DataEntity/">DataEntity</a></td>
+<td>An entity containing data</td>
 </tr>
 <tr>
 <td><a href="../AlignmentSet/">AlignmentSet</a></td>
-<td>A data record consisting of genomic intervals aligned to a reference</td>
-<td>no</td>
+<td>A data entity consisting of genomic intervals aligned to a reference</td>
 </tr>
 <tr>
 <td><a href="../VariantSet/">VariantSet</a></td>
-<td>A data record consisting of genomic variants relative to a reference</td>
-<td>no</td>
+<td>A data entity consisting of genomic variants relative to a reference</td>
 </tr>
 <tr>
 <td><a href="../Array/">Array</a></td>
-<td>Data record consisting of an N-dimensional array</td>
-<td>no</td>
+<td>Data entity consisting of an N-dimensional array</td>
 </tr>
 </tbody>
 </table>
@@ -376,8 +370,8 @@ from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 rank: 1000
 alias: has_sample
 domain_of:
-- Experiment
-- Record
+- Assay
+- DataEntity
 range: Sample
 
 </code></pre>

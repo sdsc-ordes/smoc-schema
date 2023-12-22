@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/Study/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Study - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -217,19 +217,11 @@
       NamedThing &lt;|-- Study
 
       Study : completion_date
-
       Study : description
-
-      Study : has_experiment
-
-          Study --|&gt; Experiment : has_experiment
-
+      Study : has_assay
       Study : id
-
       Study : name
-
       Study : start_date
-
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
@@ -252,37 +244,37 @@
 <tbody>
 <tr>
 <td><a href="../start_date/">start_date</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td>
 <td>The date on which this study began</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../completion_date/">completion_date</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a></td>
 <td>The date on which the concluding information for this study is completed</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../has_experiment/">has_experiment</a></td>
-<td>0..1 <br/> <a href="../Experiment/">Experiment</a></td>
-<td>An experiment</td>
+<td><a href="../has_assay/">has_assay</a></td>
+<td>0..1 <br/> <a href="../Assay/">Assay</a></td>
+<td>An assay that was performed as part of a given thing</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
-<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>1..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
 <td>A unique identifier for a thing</td>
 <td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
 <td>A human-readable name for a thing</td>
 <td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td>
 <td>A human-readable description for a thing</td>
 <td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
@@ -349,11 +341,12 @@ see_also:
 - bioschemas:Study
 - FG:Study
 - NCIT:C63536
+rank: 1000
 is_a: NamedThing
 slots:
 - start_date
 - completion_date
-- has_experiment
+- has_assay
 
 </code></pre>
 </details>
@@ -367,6 +360,7 @@ see_also:
 - bioschemas:Study
 - FG:Study
 - NCIT:C63536
+rank: 1000
 is_a: NamedThing
 attributes:
   start_date:
@@ -391,16 +385,16 @@ attributes:
     domain_of:
     - Study
     range: datetime
-  has_experiment:
-    name: has_experiment
-    description: An experiment.
+  has_assay:
+    name: has_assay
+    description: An assay that was performed as part of a given thing.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
-    alias: has_experiment
+    alias: has_assay
     owner: Study
     domain_of:
     - Study
-    range: Experiment
+    range: Assay
   id:
     name: id
     description: A unique identifier for a thing
@@ -413,7 +407,6 @@ attributes:
     domain_of:
     - NamedThing
     range: uriorcurie
-    required: true
   name:
     name: name
     description: A human-readable name for a thing

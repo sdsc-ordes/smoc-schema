@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/Record/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Record - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -214,19 +214,8 @@
       Record &lt;|-- Array
 
       Record : format
-
-          Record --|&gt; DataFormat : format
-
-      Record : has_reference
-
-          Record --|&gt; ReferenceGenome : has_reference
-
       Record : has_sample
-
-          Record --|&gt; Sample : has_sample
-
       Record : location
-
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
@@ -251,7 +240,7 @@
 <tbody>
 <tr>
 <td><a href="../location/">location</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a></td>
 <td>The location of a data record, either on the web or the filesystem</td>
 <td>direct</td>
 </tr>
@@ -265,12 +254,6 @@
 <td><a href="../has_sample/">has_sample</a></td>
 <td>0..1 <br/> <a href="../Sample/">Sample</a></td>
 <td>Biological sample included or described by a given thing</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../has_reference/">has_reference</a></td>
-<td>0..1 <br/> <a href="../ReferenceGenome/">ReferenceGenome</a></td>
-<td>Specifies the reference coordinate system used by an omics dataset</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -326,11 +309,11 @@
 description: An individual data record. Examples include an array or an alignment
   file.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+rank: 1000
 slots:
 - location
 - format
 - has_sample
-- has_reference
 
 </code></pre>
 </details>
@@ -340,6 +323,7 @@ slots:
 description: An individual data record. Examples include an array or an alignment
   file.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+rank: 1000
 attributes:
   location:
     name: location
@@ -350,8 +334,6 @@ attributes:
     owner: Record
     domain_of:
     - Record
-    - ReferenceGenome
-    - ReferenceSequence
     range: uriorcurie
   format:
     name: format
@@ -374,16 +356,6 @@ attributes:
     - Experiment
     - Record
     range: Sample
-  has_reference:
-    name: has_reference
-    description: Specifies the reference coordinate system used by an omics dataset.
-    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-    rank: 1000
-    alias: has_reference
-    owner: Record
-    domain_of:
-    - Record
-    range: ReferenceGenome
 
 </code></pre>
 </details>

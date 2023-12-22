@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://sdsc-ordes.github.io/smoc-schema/Array/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.5.3, mkdocs-material-8.5.10" name="generator"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
 <title>Class: Array - smoc-schema</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
@@ -200,31 +200,21 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="class-array">Class: Array</h1>
-<p><em>Data record consisting of an N-dimensional array.</em></p>
+<p><em>Data entity consisting of an N-dimensional array.</em></p>
 <p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Array">smoc_schema:Array</a></p>
 <div class="mermaid"> classDiagram
     class Array
-      Record &lt;|-- Array
+      DataEntity &lt;|-- Array
 
       Array : format
-
-          Array --|&gt; DataFormat : format
-
       Array : has_reference
-
-          Array --|&gt; ReferenceGenome : has_reference
-
       Array : has_sample
-
-          Array --|&gt; Sample : has_sample
-
-      Array : location
-
+      Array : uri
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../Record/">Record</a><ul>
+<li><a href="../DataEntity/">DataEntity</a><ul>
 <li><strong>Array</strong></li>
 </ul>
 </li>
@@ -241,28 +231,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../location/">location</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The location of a data record, either on the web or the filesystem</td>
-<td><a href="../Record/">Record</a></td>
+<td><a href="../uri/">uri</a></td>
+<td>0..1 <br/> <a href="../uri/">uri</a></td>
+<td>The uniform resource identifier to use to access a resource, either on the we...</td>
+<td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
 <td><a href="../format/">format</a></td>
 <td>0..1 <br/> <a href="../DataFormat/">DataFormat</a></td>
-<td>Data/file format associated with a data record</td>
-<td><a href="../Record/">Record</a></td>
+<td>Data/file format associated with a data entity</td>
+<td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
 <td><a href="../has_sample/">has_sample</a></td>
 <td>0..1 <br/> <a href="../Sample/">Sample</a></td>
 <td>Biological sample included or described by a given thing</td>
-<td><a href="../Record/">Record</a></td>
+<td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
 <td><a href="../has_reference/">has_reference</a></td>
 <td>0..1 <br/> <a href="../ReferenceGenome/">ReferenceGenome</a></td>
 <td>Specifies the reference coordinate system used by an omics dataset</td>
-<td><a href="../Record/">Record</a></td>
+<td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 </tbody>
 </table>
@@ -295,40 +285,42 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Array
-description: Data record consisting of an N-dimensional array.
+description: Data entity consisting of an N-dimensional array.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-is_a: Record
+rank: 1000
+is_a: DataEntity
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Array
-description: Data record consisting of an N-dimensional array.
+description: Data entity consisting of an N-dimensional array.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-is_a: Record
+rank: 1000
+is_a: DataEntity
 attributes:
-  location:
-    name: location
-    description: The location of a data record, either on the web or the filesystem
+  uri:
+    name: uri
+    description: The uniform resource identifier to use to access a resource, either
+      on the web or the filesystem
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
-    alias: location
+    alias: uri
     owner: Array
     domain_of:
-    - Record
-    - ReferenceGenome
+    - DataEntity
     - ReferenceSequence
-    range: uriorcurie
+    range: uri
   format:
     name: format
-    description: Data/file format associated with a data record.
+    description: Data/file format associated with a data entity.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
     alias: format
     owner: Array
     domain_of:
-    - Record
+    - DataEntity
     range: DataFormat
   has_sample:
     name: has_sample
@@ -338,8 +330,8 @@ attributes:
     alias: has_sample
     owner: Array
     domain_of:
-    - Experiment
-    - Record
+    - Assay
+    - DataEntity
     range: Sample
   has_reference:
     name: has_reference
@@ -349,7 +341,7 @@ attributes:
     alias: has_reference
     owner: Array
     domain_of:
-    - Record
+    - DataEntity
     range: ReferenceGenome
 
 </code></pre>
