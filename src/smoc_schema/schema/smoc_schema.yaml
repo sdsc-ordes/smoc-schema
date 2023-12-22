@@ -154,32 +154,42 @@ slots:
     slot_uri: FG:start_date
     description: The date on which this study began.
     range: datetime
+    required: true
   omics_type:
     description: The type of omics considered.
     range: OmicsType
+    required: true
+    multivalued: true
   has_assay:
     description: An assay that was performed as part of a given thing.
     range: Assay
+    multivalued: true
   has_sample:
     description: Biological sample included or described by a given thing.
     range: Sample
+    multivalued: true
   has_data:
     description: Data entity included in a given collection.
     range: DataEntity
+    multivalued: true
   format:
     description: Data/file format associated with a data entity.
     range: DataFormat
+    required: true
   taxon_id:
     description: The taxid number describing the taxonomic range of a sample.
     range: integer
+    multivalued: true
   collector:
     description: The organization responsible for collecting a given sample.
     range: string
+    multivalued: true
   uri:
     description: >-
       The uniform resource identifier to use to access a resource,
       either on the web or the filesystem
     range: uri
+    required: true
   sequence_md5:
     description: >-
       The pre-computed hash uniquely representing a biological sequence.
@@ -192,6 +202,7 @@ slots:
   has_sequence:
     description: Denotes that a sequence beolongs to a collection (e.g. a reference genome).
     range: ReferenceSequence
+    multivalued: true
   has_reference:
     description: Specifies the reference coordinate system used by an omics dataset.
     range: ReferenceGenome
@@ -220,6 +231,9 @@ enums:
       CRAM:
         description: Referenced-based compression of alignment format.
         meaning: EDAM:format_3462
+      FASTQ:
+        description: FASTQ short read format with sequence and any type of quality scores.
+        meaning: EDAM:format_1930
       Zarr:
         description: Chunked, compressed N-dimensional arrays.
         meaning: EDAM:format_3915
