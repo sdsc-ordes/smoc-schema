@@ -2,6 +2,6 @@
 ---
 entries:
   - id: example:Study001
-    name: foo bar
-    primary_email: foo.bar@example.com
-    age_in_years: 33
+    name: Test for the schema
+    description: If this fails, something is wrong with the schema
+    start_date: "2023-12-22"
