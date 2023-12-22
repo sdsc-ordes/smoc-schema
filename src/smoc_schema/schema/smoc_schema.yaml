@@ -17,6 +17,7 @@ prefixes:
   EDAM: http://edamontology.org/
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   FG: https://w3id.org/fair-genomes/ontology/
+  sphn: https://biomedit.ch/rdf/sphn-schema/sphn#
   example: https://example.org/
 default_prefix: smoc_schema
 default_range: string
@@ -47,34 +48,33 @@ classes:
     slots:
       - start_date
       - completion_date
-      - has_experiment
+      - has_assay
 
-  Experiment:
+  Assay:
     see_also:
       - NCIT:C42790
+      - sphn:Assay
     description: >-
-      A coordinated set of actions designed to generate data.
-      An experiment can contain multiple samples and datasets.
+      A coordinated set of actions designed to generate data from samples.
     slots:
       - has_sample
-      - has_record
+      - has_data
 
   Sample:
     see_also:
       - bioschemas:Sample
     description: >-
-      A biological sample used in experiments.
+      A biological sample used in assays.
       Examples include a whole organism, tissue or cell line.
     slots:
       - taxon_id
       - collector
 
-  Record:
+  DataEntity:
     description: >-
-      An individual data record.
-      Examples include an array or an alignment file.
+      An entity containing data.
     slots:
-      - location
+      - uri
       - format
       - has_sample
       - has_reference
@@ -87,7 +87,6 @@ classes:
       - name
       - has_sequence
       - taxon_id
-      - location
       - source_uri
 
   ReferenceSequence:
@@ -95,21 +94,21 @@ classes:
       A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
     slots:
       - name
+      - uri
       - sequence_md5
-      - location
       - source_uri
 
   AlignmentSet:
-    is_a: Record
-    description: A data record consisting of genomic intervals aligned to a reference.
+    is_a: DataEntity
+    description: A data entity consisting of genomic intervals aligned to a reference.
 
   VariantSet:
-    is_a: Record
-    description: A data record consisting of genomic variants relative to a reference.
+    is_a: DataEntity
+    description: A data entity consisting of genomic variants relative to a reference.
 
   Array:
-    is_a: Record
-    description: Data record consisting of an N-dimensional array.
+    is_a: DataEntity
+    description: Data entity consisting of an N-dimensional array.
 
   StudyCollection:
     tree_root: true
@@ -121,6 +120,18 @@ classes:
         multivalued: true
         inlined: true
 
+# TODO: Expand schema to support standard use cases
+# NOTE: Suggestions below based on the SPHN 2024 schema
+
+# QualityControlMetric
+# StandardOperatingProcedure
+# SequencingAssay(Assay)
+# MassSpectometryAssay(Assay)
+# DataProcessing
+# SequencingAnalysis(DataProcessing)
+# SampleProcessing
+# LibraryPreparation(SampleProcessing)
+# Software
 
 slots:
   id:
@@ -146,17 +157,17 @@ slots:
   omics_type:
     description: The type of omics considered.
     range: OmicsType
-  has_experiment:
-    description: An experiment.
-    range: Experiment
+  has_assay:
+    description: An assay that was performed as part of a given thing.
+    range: Assay
   has_sample:
     description: Biological sample included or described by a given thing.
     range: Sample
-  has_record:
-    description: Data record included in a given collection.
-    range: Record
+  has_data:
+    description: Data entity included in a given collection.
+    range: DataEntity
   format:
-    description: Data/file format associated with a data record.
+    description: Data/file format associated with a data entity.
     range: DataFormat
   taxon_id:
     description: The taxid number describing the taxonomic range of a sample.
@@ -164,9 +175,11 @@ slots:
   collector:
     description: The organization responsible for collecting a given sample.
     range: string
-  location:
-    description: The location of a data record, either on the web or the filesystem
-    range: uriorcurie
+  uri:
+    description: >-
+      The uniform resource identifier to use to access a resource,
+      either on the web or the filesystem
+    range: uri
   sequence_md5:
     description: >-
       The pre-computed hash uniquely representing a biological sequence.
@@ -175,7 +188,7 @@ slots:
     pattern: "^[a-f0-9]{32}$"
   source_uri:
     description: The URI from which a resource was obtained.
-    range: uriorcurie
+    range: uri
   has_sequence:
     description: Denotes that a sequence beolongs to a collection (e.g. a reference genome).
     range: ReferenceSequence
