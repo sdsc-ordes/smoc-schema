@@ -75,7 +75,7 @@ classes:
       An entity containing data.
     slots:
       - uri
-      - format
+      - data_format
       - has_sample
       - has_reference
 
@@ -172,7 +172,7 @@ slots:
     description: Data entity included in a given collection.
     range: DataEntity
     multivalued: true
-  format:
+  data_format:
     description: Data/file format associated with a data entity.
     range: DataFormat
     required: true
