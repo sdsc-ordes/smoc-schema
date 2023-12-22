@@ -48,7 +48,7 @@ linkml:Sparqlpath xsd:string
     (  $<AlignmentSet_tes> (  &<DataEntity_tes> ;
           rdf:type [ <DataEntity> ] ?
        ) ;
-       rdf:type [ <AlignmentSet> ] ?
+       rdf:type [ <AlignmentSet> ]
     )
 }
 
@@ -56,27 +56,31 @@ linkml:Sparqlpath xsd:string
     (  $<Array_tes> (  &<DataEntity_tes> ;
           rdf:type [ <DataEntity> ] ?
        ) ;
-       rdf:type [ <Array> ] ?
+       rdf:type [ <Array> ]
     )
 }
 
 <Assay> CLOSED {
-    (  $<Assay_tes> (  <has_sample> @<Sample> * ;
+    (  $<Assay_tes> (  &<NamedThing_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
+          <has_sample> @<Sample> * ;
           <has_data> @<DataEntity> * ;
           <omics_type> @<OmicsType> +
        ) ;
-       rdf:type [ <Assay> ] ?
+       rdf:type [ <Assay> ]
     )
 }
 
 <DataEntity>  (
     CLOSED {
-       (  $<DataEntity_tes> (  <location> @linkml:Uri ;
+       (  $<DataEntity_tes> (  &<NamedThing_tes> ;
+             rdf:type [ schema1:Thing ] ? ;
+             <location> @linkml:Uri ;
              <data_format> @<DataFormat> ;
              <has_sample> @<Sample> * ;
              <has_reference> @<ReferenceGenome> ?
           ) ;
-          rdf:type [ <DataEntity> ] ?
+          rdf:type [ <DataEntity> ]
        )
     } OR @<AlignmentSet> OR @<Array> OR @<VariantSet>
 )
@@ -88,34 +92,38 @@ linkml:Sparqlpath xsd:string
           ) ;
           rdf:type [ schema1:Thing ]
        )
-    } OR @<Study>
+    } OR @<Assay> OR @<DataEntity> OR @<ReferenceGenome> OR @<ReferenceSequence> OR @<Sample> OR @<Study>
 )
 
 <ReferenceGenome> CLOSED {
-    (  $<ReferenceGenome_tes> (  schema1:name @linkml:String ? ;
+    (  $<ReferenceGenome_tes> (  &<NamedThing_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
           <has_sequence> @<ReferenceSequence> * ;
           <taxon_id> @linkml:Integer * ;
           <source_uri> @linkml:Uri ?
        ) ;
-       rdf:type [ <ReferenceGenome> ] ?
+       rdf:type [ <ReferenceGenome> ]
     )
 }
 
 <ReferenceSequence> CLOSED {
-    (  $<ReferenceSequence_tes> (  schema1:name @linkml:String ? ;
+    (  $<ReferenceSequence_tes> (  &<NamedThing_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
           <location> @linkml:Uri ;
           <sequence_md5> @linkml:String ? ;
           <source_uri> @linkml:Uri ?
        ) ;
-       rdf:type [ <ReferenceSequence> ] ?
+       rdf:type [ <ReferenceSequence> ]
     )
 }
 
 <Sample> CLOSED {
-    (  $<Sample_tes> (  <taxon_id> @linkml:Integer * ;
+    (  $<Sample_tes> (  &<NamedThing_tes> ;
+          rdf:type [ schema1:Thing ] ? ;
+          <taxon_id> @linkml:Integer * ;
           <collector> @linkml:String *
        ) ;
-       rdf:type [ <Sample> ] ?
+       rdf:type [ <Sample> ]
     )
 }
 
@@ -140,7 +148,7 @@ linkml:Sparqlpath xsd:string
     (  $<VariantSet_tes> (  &<DataEntity_tes> ;
           rdf:type [ <DataEntity> ] ?
        ) ;
-       rdf:type [ <VariantSet> ] ?
+       rdf:type [ <VariantSet> ]
     )
 }
 

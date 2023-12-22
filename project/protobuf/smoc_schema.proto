@@ -1,6 +1,9 @@
 // A data entity consisting of genomic intervals aligned to a reference.
 message AlignmentSet
  {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
   uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
@@ -9,6 +12,9 @@ message AlignmentSet
 // Data entity consisting of an N-dimensional array.
 message Array
  {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
   uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
@@ -17,6 +23,9 @@ message Array
 // A coordinated set of actions designed to generate data from samples.
 message Assay
  {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
  repeated  sample hasSample = 0
  repeated  dataEntity hasData = 0
  repeated  omicsType omicsType = 0
@@ -24,6 +33,9 @@ message Assay
 // An entity containing data.
 message DataEntity
  {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
   uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
@@ -39,7 +51,9 @@ message NamedThing
 // Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs).
 message ReferenceGenome
  {
+  uriorcurie id = 0
   string name = 0
+  string description = 0
  repeated  referenceSequence hasSequence = 0
  repeated  integer taxonId = 0
   uri sourceUri = 0
@@ -47,7 +61,9 @@ message ReferenceGenome
 // A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
 message ReferenceSequence
  {
+  uriorcurie id = 0
   string name = 0
+  string description = 0
   uri location = 0
   string sequenceMd5 = 0
   uri sourceUri = 0
@@ -55,6 +71,9 @@ message ReferenceSequence
 // A biological sample used in assays. Examples include a whole organism, tissue or cell line.
 message Sample
  {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
  repeated  integer taxonId = 0
  repeated  string collector = 0
  }
@@ -76,6 +95,9 @@ message StudyCollection
 // A data entity consisting of genomic variants relative to a reference.
 message VariantSet
  {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
   uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0

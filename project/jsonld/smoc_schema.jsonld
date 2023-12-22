@@ -443,11 +443,9 @@
         "http://schema.org/name"
       ],
       "slot_uri": "http://schema.org/name",
-      "owner": "ReferenceSequence",
+      "owner": "NamedThing",
       "domain_of": [
-        "NamedThing",
-        "ReferenceGenome",
-        "ReferenceSequence"
+        "NamedThing"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -528,7 +526,6 @@
         "Study"
       ],
       "range": "Assay",
-      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -544,7 +541,6 @@
         "DataEntity"
       ],
       "range": "Sample",
-      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -559,7 +555,6 @@
         "Assay"
       ],
       "range": "DataEntity",
-      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -660,7 +655,6 @@
         "ReferenceGenome"
       ],
       "range": "ReferenceSequence",
-      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -674,7 +668,6 @@
         "DataEntity"
       ],
       "range": "ReferenceGenome",
-      "inlined": true,
       "@type": "SlotDefinition"
     },
     {
@@ -742,7 +735,11 @@
         "NCIT:C42790",
         "sphn:Assay"
       ],
+      "is_a": "NamedThing",
       "slots": [
+        "id",
+        "name",
+        "description",
         "has_sample",
         "has_data",
         "omics_type"
@@ -759,7 +756,11 @@
       "see_also": [
         "bioschemas:Sample"
       ],
+      "is_a": "NamedThing",
       "slots": [
+        "id",
+        "name",
+        "description",
         "taxon_id",
         "collector"
       ],
@@ -772,7 +773,11 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/DataEntity",
       "description": "An entity containing data.",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "NamedThing",
       "slots": [
+        "id",
+        "name",
+        "description",
         "location",
         "data_format",
         "has_sample",
@@ -787,8 +792,11 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/ReferenceGenome",
       "description": "Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs).",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "NamedThing",
       "slots": [
+        "id",
         "name",
+        "description",
         "has_sequence",
         "taxon_id",
         "source_uri"
@@ -802,8 +810,11 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/ReferenceSequence",
       "description": "A contiguous sequence of DNA part of a reference coordinate system (genome assembly).",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "NamedThing",
       "slots": [
+        "id",
         "name",
+        "description",
         "location",
         "sequence_md5",
         "source_uri"
@@ -819,6 +830,9 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "is_a": "DataEntity",
       "slots": [
+        "id",
+        "name",
+        "description",
         "location",
         "data_format",
         "has_sample",
@@ -835,6 +849,9 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "is_a": "DataEntity",
       "slots": [
+        "id",
+        "name",
+        "description",
         "location",
         "data_format",
         "has_sample",
@@ -851,6 +868,9 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "is_a": "DataEntity",
       "slots": [
+        "id",
+        "name",
+        "description",
         "location",
         "data_format",
         "has_sample",
@@ -885,9 +905,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "smoc_schema.yaml",
-  "source_file_date": "2023-12-22T15:02:56",
-  "source_file_size": 6495,
-  "generation_date": "2023-12-22T15:03:16",
+  "source_file_date": "2023-12-22T16:26:12",
+  "source_file_size": 6574,
+  "generation_date": "2023-12-22T16:26:17",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/smoc_schema.context.jsonld",

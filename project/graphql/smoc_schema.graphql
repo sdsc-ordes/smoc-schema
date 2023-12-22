@@ -1,5 +1,8 @@
 type AlignmentSet
   {
+    id: Uriorcurie!
+    name: String
+    description: String
     location: Uri!
     dataFormat: DataFormat!
     hasSample: [Sample]
@@ -8,6 +11,9 @@ type AlignmentSet
 
 type Array
   {
+    id: Uriorcurie!
+    name: String
+    description: String
     location: Uri!
     dataFormat: DataFormat!
     hasSample: [Sample]
@@ -16,6 +22,9 @@ type Array
 
 type Assay
   {
+    id: Uriorcurie!
+    name: String
+    description: String
     hasSample: [Sample]
     hasData: [DataEntity]
     omicsType: [OmicsType]!
@@ -23,6 +32,9 @@ type Assay
 
 type DataEntity
   {
+    id: Uriorcurie!
+    name: String
+    description: String
     location: Uri!
     dataFormat: DataFormat!
     hasSample: [Sample]
@@ -38,7 +50,9 @@ type NamedThing
 
 type ReferenceGenome
   {
+    id: Uriorcurie!
     name: String
+    description: String
     hasSequence: [ReferenceSequence]
     taxonId: [Integer]
     sourceUri: Uri
@@ -46,7 +60,9 @@ type ReferenceGenome
 
 type ReferenceSequence
   {
+    id: Uriorcurie!
     name: String
+    description: String
     location: Uri!
     sequenceMd5: String
     sourceUri: Uri
@@ -54,6 +70,9 @@ type ReferenceSequence
 
 type Sample
   {
+    id: Uriorcurie!
+    name: String
+    description: String
     taxonId: [Integer]
     collector: [String]
   }
@@ -75,6 +94,9 @@ type StudyCollection
 
 type VariantSet
   {
+    id: Uriorcurie!
+    name: String
+    description: String
     location: Uri!
     dataFormat: DataFormat!
     hasSample: [Sample]

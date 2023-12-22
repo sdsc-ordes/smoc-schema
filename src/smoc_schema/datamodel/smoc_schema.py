@@ -1,5 +1,5 @@
 # Auto generated from smoc_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2023-12-22T15:03:21
+# Generation date: 2023-12-22T16:26:22
 # Schema: smoc-schema
 #
 # id: https://w3id.org/sdsc-ordes/smoc-schema
@@ -55,6 +55,38 @@ class StudyId(NamedThingId):
     pass
 
 
+class AssayId(NamedThingId):
+    pass
+
+
+class SampleId(NamedThingId):
+    pass
+
+
+class DataEntityId(NamedThingId):
+    pass
+
+
+class ReferenceGenomeId(NamedThingId):
+    pass
+
+
+class ReferenceSequenceId(NamedThingId):
+    pass
+
+
+class AlignmentSetId(DataEntityId):
+    pass
+
+
+class VariantSetId(DataEntityId):
+    pass
+
+
+class ArrayId(DataEntityId):
+    pass
+
+
 @dataclass
 class NamedThing(YAMLRoot):
     """
@@ -101,7 +133,7 @@ class Study(NamedThing):
     id: Union[str, StudyId] = None
     start_date: Union[str, XSDDateTime] = None
     completion_date: Optional[Union[str, XSDDateTime]] = None
-    has_assay: Optional[Union[Union[dict, "Assay"], List[Union[dict, "Assay"]]]] = empty_list()
+    has_assay: Optional[Union[Union[str, AssayId], List[Union[str, AssayId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -117,13 +149,15 @@ class Study(NamedThing):
         if self.completion_date is not None and not isinstance(self.completion_date, XSDDateTime):
             self.completion_date = XSDDateTime(self.completion_date)
 
-        self._normalize_inlined_as_dict(slot_name="has_assay", slot_type=Assay, key_name="omics_type", keyed=False)
+        if not isinstance(self.has_assay, list):
+            self.has_assay = [self.has_assay] if self.has_assay is not None else []
+        self.has_assay = [v if isinstance(v, AssayId) else AssayId(v) for v in self.has_assay]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Assay(YAMLRoot):
+class Assay(NamedThing):
     """
     A coordinated set of actions designed to generate data from samples.
     """
@@ -134,11 +168,17 @@ class Assay(YAMLRoot):
     class_name: ClassVar[str] = "Assay"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Assay
 
+    id: Union[str, AssayId] = None
     omics_type: Union[Union[str, "OmicsType"], List[Union[str, "OmicsType"]]] = None
-    has_sample: Optional[Union[Union[dict, "Sample"], List[Union[dict, "Sample"]]]] = empty_list()
-    has_data: Optional[Union[Union[dict, "DataEntity"], List[Union[dict, "DataEntity"]]]] = empty_list()
+    has_sample: Optional[Union[Union[str, SampleId], List[Union[str, SampleId]]]] = empty_list()
+    has_data: Optional[Union[Union[str, DataEntityId], List[Union[str, DataEntityId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AssayId):
+            self.id = AssayId(self.id)
+
         if self._is_empty(self.omics_type):
             self.MissingRequiredField("omics_type")
         if not isinstance(self.omics_type, list):
@@ -147,15 +187,17 @@ class Assay(YAMLRoot):
 
         if not isinstance(self.has_sample, list):
             self.has_sample = [self.has_sample] if self.has_sample is not None else []
-        self.has_sample = [v if isinstance(v, Sample) else Sample(**as_dict(v)) for v in self.has_sample]
+        self.has_sample = [v if isinstance(v, SampleId) else SampleId(v) for v in self.has_sample]
 
-        self._normalize_inlined_as_dict(slot_name="has_data", slot_type=DataEntity, key_name="location", keyed=False)
+        if not isinstance(self.has_data, list):
+            self.has_data = [self.has_data] if self.has_data is not None else []
+        self.has_data = [v if isinstance(v, DataEntityId) else DataEntityId(v) for v in self.has_data]
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Sample(YAMLRoot):
+class Sample(NamedThing):
     """
     A biological sample used in assays. Examples include a whole organism, tissue or cell line.
     """
@@ -166,10 +208,16 @@ class Sample(YAMLRoot):
     class_name: ClassVar[str] = "Sample"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Sample
 
+    id: Union[str, SampleId] = None
     taxon_id: Optional[Union[int, List[int]]] = empty_list()
     collector: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, SampleId):
+            self.id = SampleId(self.id)
+
         if not isinstance(self.taxon_id, list):
             self.taxon_id = [self.taxon_id] if self.taxon_id is not None else []
         self.taxon_id = [v if isinstance(v, int) else int(v) for v in self.taxon_id]
@@ -182,7 +230,7 @@ class Sample(YAMLRoot):
 
 
 @dataclass
-class DataEntity(YAMLRoot):
+class DataEntity(NamedThing):
     """
     An entity containing data.
     """
@@ -193,12 +241,18 @@ class DataEntity(YAMLRoot):
     class_name: ClassVar[str] = "DataEntity"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.DataEntity
 
+    id: Union[str, DataEntityId] = None
     location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
-    has_sample: Optional[Union[Union[dict, Sample], List[Union[dict, Sample]]]] = empty_list()
-    has_reference: Optional[Union[dict, "ReferenceGenome"]] = None
+    has_sample: Optional[Union[Union[str, SampleId], List[Union[str, SampleId]]]] = empty_list()
+    has_reference: Optional[Union[str, ReferenceGenomeId]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, DataEntityId):
+            self.id = DataEntityId(self.id)
+
         if self._is_empty(self.location):
             self.MissingRequiredField("location")
         if not isinstance(self.location, URI):
@@ -211,16 +265,16 @@ class DataEntity(YAMLRoot):
 
         if not isinstance(self.has_sample, list):
             self.has_sample = [self.has_sample] if self.has_sample is not None else []
-        self.has_sample = [v if isinstance(v, Sample) else Sample(**as_dict(v)) for v in self.has_sample]
+        self.has_sample = [v if isinstance(v, SampleId) else SampleId(v) for v in self.has_sample]
 
-        if self.has_reference is not None and not isinstance(self.has_reference, ReferenceGenome):
-            self.has_reference = ReferenceGenome(**as_dict(self.has_reference))
+        if self.has_reference is not None and not isinstance(self.has_reference, ReferenceGenomeId):
+            self.has_reference = ReferenceGenomeId(self.has_reference)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class ReferenceGenome(YAMLRoot):
+class ReferenceGenome(NamedThing):
     """
     Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs).
     """
@@ -231,16 +285,20 @@ class ReferenceGenome(YAMLRoot):
     class_name: ClassVar[str] = "ReferenceGenome"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.ReferenceGenome
 
-    name: Optional[str] = None
-    has_sequence: Optional[Union[Union[dict, "ReferenceSequence"], List[Union[dict, "ReferenceSequence"]]]] = empty_list()
+    id: Union[str, ReferenceGenomeId] = None
+    has_sequence: Optional[Union[Union[str, ReferenceSequenceId], List[Union[str, ReferenceSequenceId]]]] = empty_list()
     taxon_id: Optional[Union[int, List[int]]] = empty_list()
     source_uri: Optional[Union[str, URI]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ReferenceGenomeId):
+            self.id = ReferenceGenomeId(self.id)
 
-        self._normalize_inlined_as_dict(slot_name="has_sequence", slot_type=ReferenceSequence, key_name="location", keyed=False)
+        if not isinstance(self.has_sequence, list):
+            self.has_sequence = [self.has_sequence] if self.has_sequence is not None else []
+        self.has_sequence = [v if isinstance(v, ReferenceSequenceId) else ReferenceSequenceId(v) for v in self.has_sequence]
 
         if not isinstance(self.taxon_id, list):
             self.taxon_id = [self.taxon_id] if self.taxon_id is not None else []
@@ -253,7 +311,7 @@ class ReferenceGenome(YAMLRoot):
 
 
 @dataclass
-class ReferenceSequence(YAMLRoot):
+class ReferenceSequence(NamedThing):
     """
     A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
     """
@@ -264,19 +322,21 @@ class ReferenceSequence(YAMLRoot):
     class_name: ClassVar[str] = "ReferenceSequence"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.ReferenceSequence
 
+    id: Union[str, ReferenceSequenceId] = None
     location: Union[str, URI] = None
-    name: Optional[str] = None
     sequence_md5: Optional[str] = None
     source_uri: Optional[Union[str, URI]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ReferenceSequenceId):
+            self.id = ReferenceSequenceId(self.id)
+
         if self._is_empty(self.location):
             self.MissingRequiredField("location")
         if not isinstance(self.location, URI):
             self.location = URI(self.location)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
 
         if self.sequence_md5 is not None and not isinstance(self.sequence_md5, str):
             self.sequence_md5 = str(self.sequence_md5)
@@ -299,8 +359,18 @@ class AlignmentSet(DataEntity):
     class_name: ClassVar[str] = "AlignmentSet"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.AlignmentSet
 
+    id: Union[str, AlignmentSetId] = None
     location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, AlignmentSetId):
+            self.id = AlignmentSetId(self.id)
+
+        super().__post_init__(**kwargs)
+
 
 @dataclass
 class VariantSet(DataEntity):
@@ -314,8 +384,18 @@ class VariantSet(DataEntity):
     class_name: ClassVar[str] = "VariantSet"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.VariantSet
 
+    id: Union[str, VariantSetId] = None
     location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, VariantSetId):
+            self.id = VariantSetId(self.id)
+
+        super().__post_init__(**kwargs)
+
 
 @dataclass
 class Array(DataEntity):
@@ -329,8 +409,18 @@ class Array(DataEntity):
     class_name: ClassVar[str] = "Array"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Array
 
+    id: Union[str, ArrayId] = None
     location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.id):
+            self.MissingRequiredField("id")
+        if not isinstance(self.id, ArrayId):
+            self.id = ArrayId(self.id)
+
+        super().__post_init__(**kwargs)
+
 
 @dataclass
 class StudyCollection(YAMLRoot):
@@ -418,13 +508,13 @@ slots.omics_type = Slot(uri=SMOC_SCHEMA.omics_type, name="omics_type", curie=SMO
                    model_uri=SMOC_SCHEMA.omics_type, domain=None, range=Union[Union[str, "OmicsType"], List[Union[str, "OmicsType"]]])
 
 slots.has_assay = Slot(uri=SMOC_SCHEMA.has_assay, name="has_assay", curie=SMOC_SCHEMA.curie('has_assay'),
-                   model_uri=SMOC_SCHEMA.has_assay, domain=None, range=Optional[Union[Union[dict, Assay], List[Union[dict, Assay]]]])
+                   model_uri=SMOC_SCHEMA.has_assay, domain=None, range=Optional[Union[Union[str, AssayId], List[Union[str, AssayId]]]])
 
 slots.has_sample = Slot(uri=SMOC_SCHEMA.has_sample, name="has_sample", curie=SMOC_SCHEMA.curie('has_sample'),
-                   model_uri=SMOC_SCHEMA.has_sample, domain=None, range=Optional[Union[Union[dict, Sample], List[Union[dict, Sample]]]])
+                   model_uri=SMOC_SCHEMA.has_sample, domain=None, range=Optional[Union[Union[str, SampleId], List[Union[str, SampleId]]]])
 
 slots.has_data = Slot(uri=SMOC_SCHEMA.has_data, name="has_data", curie=SMOC_SCHEMA.curie('has_data'),
-                   model_uri=SMOC_SCHEMA.has_data, domain=None, range=Optional[Union[Union[dict, DataEntity], List[Union[dict, DataEntity]]]])
+                   model_uri=SMOC_SCHEMA.has_data, domain=None, range=Optional[Union[Union[str, DataEntityId], List[Union[str, DataEntityId]]]])
 
 slots.data_format = Slot(uri=SMOC_SCHEMA.data_format, name="data_format", curie=SMOC_SCHEMA.curie('data_format'),
                    model_uri=SMOC_SCHEMA.data_format, domain=None, range=Union[str, "DataFormat"])
@@ -446,10 +536,10 @@ slots.source_uri = Slot(uri=SMOC_SCHEMA.source_uri, name="source_uri", curie=SMO
                    model_uri=SMOC_SCHEMA.source_uri, domain=None, range=Optional[Union[str, URI]])
 
 slots.has_sequence = Slot(uri=SMOC_SCHEMA.has_sequence, name="has_sequence", curie=SMOC_SCHEMA.curie('has_sequence'),
-                   model_uri=SMOC_SCHEMA.has_sequence, domain=None, range=Optional[Union[Union[dict, ReferenceSequence], List[Union[dict, ReferenceSequence]]]])
+                   model_uri=SMOC_SCHEMA.has_sequence, domain=None, range=Optional[Union[Union[str, ReferenceSequenceId], List[Union[str, ReferenceSequenceId]]]])
 
 slots.has_reference = Slot(uri=SMOC_SCHEMA.has_reference, name="has_reference", curie=SMOC_SCHEMA.curie('has_reference'),
-                   model_uri=SMOC_SCHEMA.has_reference, domain=None, range=Optional[Union[dict, ReferenceGenome]])
+                   model_uri=SMOC_SCHEMA.has_reference, domain=None, range=Optional[Union[str, ReferenceGenomeId]])
 
 slots.studyCollection__entries = Slot(uri=SMOC_SCHEMA.entries, name="studyCollection__entries", curie=SMOC_SCHEMA.curie('entries'),
                    model_uri=SMOC_SCHEMA.studyCollection__entries, domain=None, range=Optional[Union[Dict[Union[str, StudyId], Union[dict, Study]], List[Union[dict, Study]]]])

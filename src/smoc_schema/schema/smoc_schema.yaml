@@ -51,6 +51,7 @@ classes:
       - has_assay
 
   Assay:
+    is_a: NamedThing
     see_also:
       - NCIT:C42790
       - sphn:Assay
@@ -62,6 +63,7 @@ classes:
       - omics_type
 
   Sample:
+    is_a: NamedThing
     see_also:
       - bioschemas:Sample
     description: >-
@@ -72,6 +74,7 @@ classes:
       - collector
 
   DataEntity:
+    is_a: NamedThing
     description: >-
       An entity containing data.
     slots:
@@ -81,20 +84,20 @@ classes:
       - has_reference
 
   ReferenceGenome:
+    is_a: NamedThing
     description: >-
       Reference assembly of a given genome, consisting
       of a collection of congiguous sequences (contigs).
     slots:
-      - name
       - has_sequence
       - taxon_id
       - source_uri
 
   ReferenceSequence:
+    is_a: NamedThing
     description: >-
       A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
     slots:
-      - name
       - location
       - sequence_md5
       - source_uri
