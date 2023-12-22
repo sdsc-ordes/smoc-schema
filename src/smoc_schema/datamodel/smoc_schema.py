@@ -1,5 +1,5 @@
 # Auto generated from smoc_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-12-22T13:52:24
+# Generation date: 2023-12-22T13:53:43
 # Schema: smoc-schema
 #
 # id: https://w3id.org/sdsc-ordes/smoc-schema

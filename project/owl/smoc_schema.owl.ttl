@@ -148,17 +148,17 @@ FG:start_date a owl:ObjectProperty,
 smoc_schema:NamedThing a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty schema1:identifier ;
-            owl:qualifiedCardinality 1 ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:name ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty schema1:description ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:name ] ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty schema1:identifier ;
+            owl:qualifiedCardinality 1 ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing .
 
@@ -201,11 +201,11 @@ smoc_schema:uri a owl:ObjectProperty,
 smoc_schema:Assay a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom smoc_schema:DataEntity ;
-            owl:onProperty smoc_schema:has_data ],
-        [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:Sample ;
-            owl:onProperty smoc_schema:has_sample ] ;
+            owl:onProperty smoc_schema:has_sample ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom smoc_schema:DataEntity ;
+            owl:onProperty smoc_schema:has_data ] ;
     skos:definition "A coordinated set of actions designed to generate data from samples." .
 
 smoc_schema:ReferenceGenome a owl:Class,
@@ -215,15 +215,15 @@ smoc_schema:ReferenceGenome a owl:Class,
             owl:onClass linkml:String ;
             owl:onProperty schema1:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty smoc_schema:taxon_id ],
-        [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:ReferenceSequence ;
             owl:onProperty smoc_schema:has_sequence ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Uri ;
-            owl:onProperty smoc_schema:source_uri ] ;
+            owl:onProperty smoc_schema:source_uri ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty smoc_schema:taxon_id ] ;
     skos:definition "Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs)." .
 
 smoc_schema:ReferenceSequence a owl:Class,
@@ -231,7 +231,7 @@ smoc_schema:ReferenceSequence a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:name ],
+            owl:onProperty smoc_schema:sequence_md5 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Uri ;
@@ -239,7 +239,7 @@ smoc_schema:ReferenceSequence a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty smoc_schema:sequence_md5 ],
+            owl:onProperty schema1:name ],
         [ a owl:Restriction ;
             owl:onClass linkml:Uri ;
             owl:onProperty smoc_schema:uri ;
@@ -255,11 +255,11 @@ schema1:name a owl:ObjectProperty,
 smoc_schema:Sample a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty smoc_schema:taxon_id ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty smoc_schema:collector ] ;
+            owl:onProperty smoc_schema:collector ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty smoc_schema:taxon_id ] ;
     skos:definition "A biological sample used in assays. Examples include a whole organism, tissue or cell line." .
 
 smoc_schema:DataFormat a owl:Class,
