@@ -213,7 +213,7 @@
       DataEntity &lt;|-- VariantSet
       DataEntity &lt;|-- Array
 
-      DataEntity : format
+      DataEntity : data_format
       DataEntity : has_reference
       DataEntity : has_sample
       DataEntity : uri
@@ -246,7 +246,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../format/">format</a></td>
+<td><a href="../data_format/">data_format</a></td>
 <td>1..1 <br/> <a href="../DataFormat/">DataFormat</a></td>
 <td>Data/file format associated with a data entity</td>
 <td>direct</td>
@@ -318,7 +318,7 @@ from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 rank: 1000
 slots:
 - uri
-- format
+- data_format
 - has_sample
 - has_reference
 
@@ -344,12 +344,12 @@ attributes:
     - ReferenceSequence
     range: uri
     required: true
-  format:
-    name: format
+  data_format:
+    name: data_format
     description: Data/file format associated with a data entity.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
-    alias: format
+    alias: data_format
     owner: DataEntity
     domain_of:
     - DataEntity

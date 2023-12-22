@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://sdsc-ordes.github.io/smoc-schema/DataFormat/">
+        <link rel="canonical" href="https://sdsc-ordes.github.io/smoc-schema/data_format/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Enum: DataFormat - smoc-schema</title>
+        <title>Slot: data_format - smoc-schema</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-dataformat" class="md-skip">
+        <a href="#slot-data_format" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: DataFormat
+              Slot: data_format
             
           </span>
         </div>
@@ -256,15 +256,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    Permissible Values
+  <a href="#applicable-classes" class="md-nav__link">
+    Applicable Classes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    Slots
+  <a href="#properties" class="md-nav__link">
+    Properties
   </a>
   
 </li>
@@ -310,42 +310,18 @@
                 
                   
 
-  <a href="https://github.com/sdsc-ordes/smoc-schema/edit/master/docs/DataFormat.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/sdsc-ordes/smoc-schema/edit/master/docs/data_format.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="enum-dataformat">Enum: DataFormat</h1>
-<p>URI: <a href="DataFormat">DataFormat</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CRAM</td>
-<td>EDAM:format_3462</td>
-<td>Referenced-based compression of alignment format</td>
-</tr>
-<tr>
-<td>FASTQ</td>
-<td>EDAM:format_1930</td>
-<td>FASTQ short read format with sequence and any type of quality scores</td>
-</tr>
-<tr>
-<td>Zarr</td>
-<td>EDAM:format_3915</td>
-<td>Chunked, compressed N-dimensional arrays</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<h1 id="slot-data_format">Slot: data_format</h1>
+<p><em>Data/file format associated with a data entity.</em></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/data_format">smoc_schema:data_format</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
@@ -355,11 +331,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../data_format/">data_format</a></td>
-<td>Data/file format associated with a data entity</td>
+<td><a href="../DataEntity/">DataEntity</a></td>
+<td>An entity containing data</td>
+</tr>
+<tr>
+<td><a href="../AlignmentSet/">AlignmentSet</a></td>
+<td>A data entity consisting of genomic intervals aligned to a reference</td>
+</tr>
+<tr>
+<td><a href="../VariantSet/">VariantSet</a></td>
+<td>A data entity consisting of genomic variants relative to a reference</td>
+</tr>
+<tr>
+<td><a href="../Array/">Array</a></td>
+<td>Data entity consisting of an N-dimensional array</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Range: <a href="../DataFormat/">DataFormat</a></li>
+<li>Required: True</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -368,22 +361,15 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: DataFormat
+<pre><code class="language-yaml">name: data_format
+description: Data/file format associated with a data entity.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 rank: 1000
-permissible_values:
-  CRAM:
-    text: CRAM
-    description: Referenced-based compression of alignment format.
-    meaning: EDAM:format_3462
-  FASTQ:
-    text: FASTQ
-    description: FASTQ short read format with sequence and any type of quality scores.
-    meaning: EDAM:format_1930
-  Zarr:
-    text: Zarr
-    description: Chunked, compressed N-dimensional arrays.
-    meaning: EDAM:format_3915
+alias: data_format
+domain_of:
+- DataEntity
+range: DataFormat
+required: true
 
 </code></pre>
 

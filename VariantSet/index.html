@@ -206,7 +206,7 @@
     class VariantSet
       DataEntity &lt;|-- VariantSet
 
-      VariantSet : format
+      VariantSet : data_format
       VariantSet : has_reference
       VariantSet : has_sample
       VariantSet : uri
@@ -237,7 +237,7 @@
 <td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
-<td><a href="../format/">format</a></td>
+<td><a href="../data_format/">data_format</a></td>
 <td>1..1 <br/> <a href="../DataFormat/">DataFormat</a></td>
 <td>Data/file format associated with a data entity</td>
 <td><a href="../DataEntity/">DataEntity</a></td>
@@ -313,12 +313,12 @@ attributes:
     - ReferenceSequence
     range: uri
     required: true
-  format:
-    name: format
+  data_format:
+    name: data_format
     description: Data/file format associated with a data entity.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
-    alias: format
+    alias: data_format
     owner: VariantSet
     domain_of:
     - DataEntity

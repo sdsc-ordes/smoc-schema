@@ -96,6 +96,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://sdsc-ordes.github.io/smoc-schema/data_format/</loc>
+         <lastmod>2023-12-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://sdsc-ordes.github.io/smoc-schema/description/</loc>
          <lastmod>2023-12-22</lastmod>
          <changefreq>daily</changefreq>
