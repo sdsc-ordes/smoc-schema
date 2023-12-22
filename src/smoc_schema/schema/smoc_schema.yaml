@@ -89,6 +89,7 @@ classes:
       Reference assembly of a given genome, consisting
       of a collection of congiguous sequences (contigs).
     slots:
+      - location
       - has_sequence
       - taxon_id
       - source_uri
@@ -98,7 +99,6 @@ classes:
     description: >-
       A contiguous sequence of DNA part of a reference coordinate system (genome assembly).
     slots:
-      - location
       - sequence_md5
       - source_uri
 
@@ -241,3 +241,6 @@ enums:
       Zarr:
         description: Chunked, compressed N-dimensional arrays.
         meaning: EDAM:format_3915
+      FASTA:
+        description: FASTA sequence format including NCBI-style IDs.
+        meaning: EDAM:format_1929
