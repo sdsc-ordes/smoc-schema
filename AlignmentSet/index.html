@@ -232,19 +232,19 @@
 <tbody>
 <tr>
 <td><a href="../uri/">uri</a></td>
-<td>0..1 <br/> <a href="../uri/">uri</a></td>
+<td>1..1 <br/> <a href="../uri/">uri</a></td>
 <td>The uniform resource identifier to use to access a resource, either on the we...</td>
 <td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
 <td><a href="../format/">format</a></td>
-<td>0..1 <br/> <a href="../DataFormat/">DataFormat</a></td>
+<td>1..1 <br/> <a href="../DataFormat/">DataFormat</a></td>
 <td>Data/file format associated with a data entity</td>
 <td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
 <tr>
 <td><a href="../has_sample/">has_sample</a></td>
-<td>0..1 <br/> <a href="../Sample/">Sample</a></td>
+<td>0..* <br/> <a href="../Sample/">Sample</a></td>
 <td>Biological sample included or described by a given thing</td>
 <td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
@@ -312,6 +312,7 @@ attributes:
     - DataEntity
     - ReferenceSequence
     range: uri
+    required: true
   format:
     name: format
     description: Data/file format associated with a data entity.
@@ -322,11 +323,13 @@ attributes:
     domain_of:
     - DataEntity
     range: DataFormat
+    required: true
   has_sample:
     name: has_sample
     description: Biological sample included or described by a given thing.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    multivalued: true
     alias: has_sample
     owner: AlignmentSet
     domain_of:

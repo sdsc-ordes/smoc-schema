@@ -230,13 +230,13 @@
 </tr>
 <tr>
 <td><a href="../has_sequence/">has_sequence</a></td>
-<td>0..1 <br/> <a href="../ReferenceSequence/">ReferenceSequence</a></td>
+<td>0..* <br/> <a href="../ReferenceSequence/">ReferenceSequence</a></td>
 <td>Denotes that a sequence beolongs to a collection (e</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../taxon_id/">taxon_id</a></td>
-<td>0..1 <br/> <a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
+<td>0..* <br/> <a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a></td>
 <td>The taxid number describing the taxonomic range of a sample</td>
 <td>direct</td>
 </tr>
@@ -353,6 +353,7 @@ attributes:
       genome).
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    multivalued: true
     alias: has_sequence
     owner: ReferenceGenome
     domain_of:
@@ -363,6 +364,7 @@ attributes:
     description: The taxid number describing the taxonomic range of a sample.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    multivalued: true
     alias: taxon_id
     owner: ReferenceGenome
     domain_of:

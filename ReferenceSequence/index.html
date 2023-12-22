@@ -230,7 +230,7 @@
 </tr>
 <tr>
 <td><a href="../uri/">uri</a></td>
-<td>0..1 <br/> <a href="../uri/">uri</a></td>
+<td>1..1 <br/> <a href="../uri/">uri</a></td>
 <td>The uniform resource identifier to use to access a resource, either on the we...</td>
 <td>direct</td>
 </tr>
@@ -341,6 +341,7 @@ attributes:
     - DataEntity
     - ReferenceSequence
     range: uri
+    required: true
   sequence_md5:
     name: sequence_md5
     description: The pre-computed hash uniquely representing a biological sequence.
