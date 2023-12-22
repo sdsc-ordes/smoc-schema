@@ -71,7 +71,7 @@ linkml:Sparqlpath xsd:string
 <DataEntity>  (
     CLOSED {
        (  $<DataEntity_tes> (  <uri> @linkml:Uri ;
-             <format> @<DataFormat> ;
+             <data_format> @<DataFormat> ;
              <has_sample> @<Sample> * ;
              <has_reference> @<ReferenceGenome> ?
           ) ;

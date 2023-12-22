@@ -2,26 +2,26 @@
 
 CREATE TABLE "AlignmentSet" (
 	uri TEXT NOT NULL, 
-	format VARCHAR(5) NOT NULL, 
+	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, format, has_sample, has_reference)
+	PRIMARY KEY (uri, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "Array" (
 	uri TEXT NOT NULL, 
-	format VARCHAR(5) NOT NULL, 
+	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, format, has_sample, has_reference)
+	PRIMARY KEY (uri, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "DataEntity" (
 	uri TEXT NOT NULL, 
-	format VARCHAR(5) NOT NULL, 
+	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, format, has_sample, has_reference)
+	PRIMARY KEY (uri, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "NamedThing" (
@@ -69,10 +69,10 @@ CREATE TABLE "StudyCollection" (
 
 CREATE TABLE "VariantSet" (
 	uri TEXT NOT NULL, 
-	format VARCHAR(5) NOT NULL, 
+	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, format, has_sample, has_reference)
+	PRIMARY KEY (uri, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "Assay" (

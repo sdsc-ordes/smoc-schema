@@ -1,7 +1,7 @@
 type AlignmentSet
   {
     uri: Uri!
-    format: DataFormat!
+    dataFormat: DataFormat!
     hasSample: [Sample]
     hasReference: ReferenceGenome
   }
@@ -9,7 +9,7 @@ type AlignmentSet
 type Array
   {
     uri: Uri!
-    format: DataFormat!
+    dataFormat: DataFormat!
     hasSample: [Sample]
     hasReference: ReferenceGenome
   }
@@ -23,7 +23,7 @@ type Assay
 type DataEntity
   {
     uri: Uri!
-    format: DataFormat!
+    dataFormat: DataFormat!
     hasSample: [Sample]
     hasReference: ReferenceGenome
   }
@@ -75,7 +75,7 @@ type StudyCollection
 type VariantSet
   {
     uri: Uri!
-    format: DataFormat!
+    dataFormat: DataFormat!
     hasSample: [Sample]
     hasReference: ReferenceGenome
   }

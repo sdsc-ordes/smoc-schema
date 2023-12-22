@@ -2,7 +2,7 @@
 message AlignmentSet
  {
   uri uri = 0
-  dataFormat format = 0
+  dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
  }
@@ -10,7 +10,7 @@ message AlignmentSet
 message Array
  {
   uri uri = 0
-  dataFormat format = 0
+  dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
  }
@@ -24,7 +24,7 @@ message Assay
 message DataEntity
  {
   uri uri = 0
-  dataFormat format = 0
+  dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
  }
@@ -76,7 +76,7 @@ message StudyCollection
 message VariantSet
  {
   uri uri = 0
-  dataFormat format = 0
+  dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
  }

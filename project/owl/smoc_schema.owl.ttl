@@ -59,14 +59,14 @@ smoc_schema:collector a owl:ObjectProperty,
     rdfs:range linkml:String ;
     skos:definition "The organization responsible for collecting a given sample." .
 
-smoc_schema:entries a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:range smoc_schema:Study .
-
-smoc_schema:format a owl:ObjectProperty,
+smoc_schema:data_format a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:range smoc_schema:DataFormat ;
     skos:definition "Data/file format associated with a data entity." .
+
+smoc_schema:entries a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:range smoc_schema:Study .
 
 smoc_schema:has_assay a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -154,11 +154,11 @@ smoc_schema:NamedThing a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:name ],
+            owl:onProperty schema1:description ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:description ] ;
+            owl:onProperty schema1:name ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing .
 
@@ -168,13 +168,13 @@ smoc_schema:Study a owl:Class,
             owl:allValuesFrom smoc_schema:Assay ;
             owl:onProperty smoc_schema:has_assay ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Datetime ;
-            owl:onProperty FG:completion_date ],
-        [ a owl:Restriction ;
             owl:onClass linkml:Datetime ;
             owl:onProperty FG:start_date ;
             owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Datetime ;
+            owl:onProperty FG:completion_date ],
         smoc_schema:NamedThing ;
     skos:definition "Represents the digital object. It encapsulates omics and other datasets and their metadata." .
 
@@ -211,12 +211,12 @@ smoc_schema:Assay a owl:Class,
 smoc_schema:ReferenceGenome a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty smoc_schema:taxon_id ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty schema1:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty smoc_schema:taxon_id ],
         [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:ReferenceSequence ;
             owl:onProperty smoc_schema:has_sequence ],
@@ -229,9 +229,9 @@ smoc_schema:ReferenceGenome a owl:Class,
 smoc_schema:ReferenceSequence a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:Uri ;
-            owl:onProperty smoc_schema:uri ;
-            owl:qualifiedCardinality 1 ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:name ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Uri ;
@@ -241,9 +241,9 @@ smoc_schema:ReferenceSequence a owl:Class,
             owl:onClass linkml:String ;
             owl:onProperty smoc_schema:sequence_md5 ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:name ] ;
+            owl:onClass linkml:Uri ;
+            owl:onProperty smoc_schema:uri ;
+            owl:qualifiedCardinality 1 ] ;
     skos:definition "A contiguous sequence of DNA part of a reference coordinate system (genome assembly)." .
 
 schema1:name a owl:ObjectProperty,
@@ -255,11 +255,11 @@ schema1:name a owl:ObjectProperty,
 smoc_schema:Sample a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty smoc_schema:collector ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
-            owl:onProperty smoc_schema:taxon_id ] ;
+            owl:onProperty smoc_schema:taxon_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty smoc_schema:collector ] ;
     skos:definition "A biological sample used in assays. Examples include a whole organism, tissue or cell line." .
 
 smoc_schema:DataFormat a owl:Class,
@@ -280,20 +280,20 @@ smoc_schema:OmicsType a owl:Class,
 smoc_schema:DataEntity a owl:Class,
         linkml:ClassDefinition ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:Uri ;
-            owl:onProperty smoc_schema:uri ;
-            owl:qualifiedCardinality 1 ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass smoc_schema:ReferenceGenome ;
+            owl:onProperty smoc_schema:has_reference ],
         [ a owl:Restriction ;
             owl:onClass smoc_schema:DataFormat ;
-            owl:onProperty smoc_schema:format ;
+            owl:onProperty smoc_schema:data_format ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:Sample ;
             owl:onProperty smoc_schema:has_sample ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass smoc_schema:ReferenceGenome ;
-            owl:onProperty smoc_schema:has_reference ] ;
+            owl:onClass linkml:Uri ;
+            owl:onProperty smoc_schema:uri ;
+            owl:qualifiedCardinality 1 ] ;
     skos:definition "An entity containing data." .
 
 linkml:ClassDefinition a owl:Class .

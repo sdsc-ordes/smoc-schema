@@ -4,7 +4,7 @@
             "additionalProperties": false,
             "description": "A data entity consisting of genomic intervals aligned to a reference.",
             "properties": {
-                "format": {
+                "data_format": {
                     "$ref": "#/$defs/DataFormat",
                     "description": "Data/file format associated with a data entity."
                 },
@@ -26,7 +26,7 @@
             },
             "required": [
                 "uri",
-                "format"
+                "data_format"
             ],
             "title": "AlignmentSet",
             "type": "object"
@@ -35,7 +35,7 @@
             "additionalProperties": false,
             "description": "Data entity consisting of an N-dimensional array.",
             "properties": {
-                "format": {
+                "data_format": {
                     "$ref": "#/$defs/DataFormat",
                     "description": "Data/file format associated with a data entity."
                 },
@@ -57,7 +57,7 @@
             },
             "required": [
                 "uri",
-                "format"
+                "data_format"
             ],
             "title": "Array",
             "type": "object"
@@ -88,7 +88,7 @@
             "additionalProperties": false,
             "description": "An entity containing data.",
             "properties": {
-                "format": {
+                "data_format": {
                     "$ref": "#/$defs/DataFormat",
                     "description": "Data/file format associated with a data entity."
                 },
@@ -110,7 +110,7 @@
             },
             "required": [
                 "uri",
-                "format"
+                "data_format"
             ],
             "title": "DataEntity",
             "type": "object"
@@ -338,7 +338,7 @@
             "additionalProperties": false,
             "description": "A data entity consisting of genomic variants relative to a reference.",
             "properties": {
-                "format": {
+                "data_format": {
                     "$ref": "#/$defs/DataFormat",
                     "description": "Data/file format associated with a data entity."
                 },
@@ -360,7 +360,7 @@
             },
             "required": [
                 "uri",
-                "format"
+                "data_format"
             ],
             "title": "VariantSet",
             "type": "object"

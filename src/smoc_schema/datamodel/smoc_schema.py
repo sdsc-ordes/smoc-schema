@@ -1,5 +1,5 @@
 # Auto generated from smoc_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-12-22T13:25:48
+# Generation date: 2023-12-22T13:52:24
 # Schema: smoc-schema
 #
 # id: https://w3id.org/sdsc-ordes/smoc-schema
@@ -190,7 +190,7 @@ class DataEntity(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.DataEntity
 
     uri: Union[str, URI] = None
-    format: Union[str, "DataFormat"] = None
+    data_format: Union[str, "DataFormat"] = None
     has_sample: Optional[Union[Union[dict, Sample], List[Union[dict, Sample]]]] = empty_list()
     has_reference: Optional[Union[dict, "ReferenceGenome"]] = None
 
@@ -200,10 +200,10 @@ class DataEntity(YAMLRoot):
         if not isinstance(self.uri, URI):
             self.uri = URI(self.uri)
 
-        if self._is_empty(self.format):
-            self.MissingRequiredField("format")
-        if not isinstance(self.format, DataFormat):
-            self.format = DataFormat(self.format)
+        if self._is_empty(self.data_format):
+            self.MissingRequiredField("data_format")
+        if not isinstance(self.data_format, DataFormat):
+            self.data_format = DataFormat(self.data_format)
 
         if not isinstance(self.has_sample, list):
             self.has_sample = [self.has_sample] if self.has_sample is not None else []
@@ -296,7 +296,7 @@ class AlignmentSet(DataEntity):
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.AlignmentSet
 
     uri: Union[str, URI] = None
-    format: Union[str, "DataFormat"] = None
+    data_format: Union[str, "DataFormat"] = None
 
 @dataclass
 class VariantSet(DataEntity):
@@ -311,7 +311,7 @@ class VariantSet(DataEntity):
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.VariantSet
 
     uri: Union[str, URI] = None
-    format: Union[str, "DataFormat"] = None
+    data_format: Union[str, "DataFormat"] = None
 
 @dataclass
 class Array(DataEntity):
@@ -326,7 +326,7 @@ class Array(DataEntity):
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Array
 
     uri: Union[str, URI] = None
-    format: Union[str, "DataFormat"] = None
+    data_format: Union[str, "DataFormat"] = None
 
 @dataclass
 class StudyCollection(YAMLRoot):
@@ -415,8 +415,8 @@ slots.has_sample = Slot(uri=SMOC_SCHEMA.has_sample, name="has_sample", curie=SMO
 slots.has_data = Slot(uri=SMOC_SCHEMA.has_data, name="has_data", curie=SMOC_SCHEMA.curie('has_data'),
                    model_uri=SMOC_SCHEMA.has_data, domain=None, range=Optional[Union[Union[dict, DataEntity], List[Union[dict, DataEntity]]]])
 
-slots.format = Slot(uri=SMOC_SCHEMA.format, name="format", curie=SMOC_SCHEMA.curie('format'),
-                   model_uri=SMOC_SCHEMA.format, domain=None, range=Union[str, "DataFormat"])
+slots.data_format = Slot(uri=SMOC_SCHEMA.data_format, name="data_format", curie=SMOC_SCHEMA.curie('data_format'),
+                   model_uri=SMOC_SCHEMA.data_format, domain=None, range=Union[str, "DataFormat"])
 
 slots.taxon_id = Slot(uri=SMOC_SCHEMA.taxon_id, name="taxon_id", curie=SMOC_SCHEMA.curie('taxon_id'),
                    model_uri=SMOC_SCHEMA.taxon_id, domain=None, range=Optional[Union[int, List[int]]])
