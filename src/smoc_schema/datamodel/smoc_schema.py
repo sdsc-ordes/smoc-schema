@@ -1,5 +1,5 @@
 # Auto generated from smoc_schema.yaml by pythongen.py version: 0.0.1
-# Generation date: 2023-12-22T14:22:11
+# Generation date: 2023-12-22T15:03:21
 # Schema: smoc-schema
 #
 # id: https://w3id.org/sdsc-ordes/smoc-schema
@@ -117,9 +117,7 @@ class Study(NamedThing):
         if self.completion_date is not None and not isinstance(self.completion_date, XSDDateTime):
             self.completion_date = XSDDateTime(self.completion_date)
 
-        if not isinstance(self.has_assay, list):
-            self.has_assay = [self.has_assay] if self.has_assay is not None else []
-        self.has_assay = [v if isinstance(v, Assay) else Assay(**as_dict(v)) for v in self.has_assay]
+        self._normalize_inlined_as_dict(slot_name="has_assay", slot_type=Assay, key_name="omics_type", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -136,10 +134,17 @@ class Assay(YAMLRoot):
     class_name: ClassVar[str] = "Assay"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Assay
 
+    omics_type: Union[Union[str, "OmicsType"], List[Union[str, "OmicsType"]]] = None
     has_sample: Optional[Union[Union[dict, "Sample"], List[Union[dict, "Sample"]]]] = empty_list()
     has_data: Optional[Union[Union[dict, "DataEntity"], List[Union[dict, "DataEntity"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.omics_type):
+            self.MissingRequiredField("omics_type")
+        if not isinstance(self.omics_type, list):
+            self.omics_type = [self.omics_type] if self.omics_type is not None else []
+        self.omics_type = [v if isinstance(v, OmicsType) else OmicsType(v) for v in self.omics_type]
+
         if not isinstance(self.has_sample, list):
             self.has_sample = [self.has_sample] if self.has_sample is not None else []
         self.has_sample = [v if isinstance(v, Sample) else Sample(**as_dict(v)) for v in self.has_sample]

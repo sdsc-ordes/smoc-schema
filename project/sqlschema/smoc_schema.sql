@@ -78,7 +78,8 @@ CREATE TABLE "VariantSet" (
 CREATE TABLE "Assay" (
 	has_sample TEXT, 
 	has_data TEXT, 
+	omics_type VARCHAR(15) NOT NULL, 
 	"Study_id" TEXT, 
-	PRIMARY KEY (has_sample, has_data, "Study_id"), 
+	PRIMARY KEY (has_sample, has_data, omics_type, "Study_id"), 
 	FOREIGN KEY("Study_id") REFERENCES "Study" (id)
 );

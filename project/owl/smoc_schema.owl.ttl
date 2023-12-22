@@ -31,10 +31,10 @@ smoc_schema:StudyCollection a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "StudyCollection" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom smoc_schema:Study ;
+            owl:minCardinality 0 ;
             owl:onProperty smoc_schema:entries ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom smoc_schema:Study ;
             owl:onProperty smoc_schema:entries ] ;
     skos:definition "A holder for Study objects" ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
@@ -46,43 +46,36 @@ smoc_schema:VariantSet a owl:Class,
     skos:definition "A data entity consisting of genomic variants relative to a reference." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
 
-smoc_schema:omics_type a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "omics_type" ;
-    rdfs:range smoc_schema:OmicsType ;
-    skos:definition "The type of omics considered." ;
-    skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
-
 smoc_schema:NamedThing a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "NamedThing" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty smoc_schema:id ],
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty smoc_schema:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty smoc_schema:description ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty smoc_schema:description ],
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty smoc_schema:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty smoc_schema:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Uriorcurie ;
             owl:onProperty smoc_schema:id ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty smoc_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:name ] ;
+            owl:minCardinality 1 ;
+            owl:onProperty smoc_schema:id ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
@@ -94,14 +87,17 @@ smoc_schema:Study a owl:Class,
         bioschemas:Study,
         FG:Study ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom smoc_schema:Assay ;
-            owl:onProperty smoc_schema:has_assay ],
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty smoc_schema:completion_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:completion_date ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Datetime ;
             owl:onProperty smoc_schema:start_date ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty smoc_schema:completion_date ],
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:has_assay ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty smoc_schema:start_date ],
@@ -109,14 +105,11 @@ smoc_schema:Study a owl:Class,
             owl:maxCardinality 1 ;
             owl:onProperty smoc_schema:start_date ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:completion_date ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:has_assay ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty smoc_schema:completion_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom smoc_schema:Assay ;
+            owl:onProperty smoc_schema:has_assay ],
         smoc_schema:NamedThing ;
     skos:definition "Represents the digital object. It encapsulates omics and other datasets and their metadata." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
@@ -162,6 +155,15 @@ smoc_schema:Assay a owl:Class,
     rdfs:seeAlso NCIT:C42790,
         sphn:Assay ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:has_sample ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty smoc_schema:omics_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom smoc_schema:OmicsType ;
+            owl:onProperty smoc_schema:omics_type ],
+        [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:DataEntity ;
             owl:onProperty smoc_schema:has_data ],
         [ a owl:Restriction ;
@@ -169,9 +171,6 @@ smoc_schema:Assay a owl:Class,
             owl:onProperty smoc_schema:has_data ],
         [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:Sample ;
-            owl:onProperty smoc_schema:has_sample ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty smoc_schema:has_sample ] ;
     skos:definition "A coordinated set of actions designed to generate data from samples." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
@@ -180,11 +179,23 @@ smoc_schema:ReferenceGenome a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "ReferenceGenome" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty smoc_schema:source_uri ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty smoc_schema:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:source_uri ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty smoc_schema:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uri ;
-            owl:onProperty smoc_schema:source_uri ],
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:taxon_id ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
             owl:onProperty smoc_schema:taxon_id ],
@@ -192,22 +203,10 @@ smoc_schema:ReferenceGenome a owl:Class,
             owl:minCardinality 0 ;
             owl:onProperty smoc_schema:source_uri ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:source_uri ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty smoc_schema:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom smoc_schema:ReferenceSequence ;
+            owl:minCardinality 0 ;
             owl:onProperty smoc_schema:has_sequence ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:taxon_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom smoc_schema:ReferenceSequence ;
             owl:onProperty smoc_schema:has_sequence ] ;
     skos:definition "Reference assembly of a given genome, consisting of a collection of congiguous sequences (contigs)." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
@@ -216,8 +215,35 @@ smoc_schema:ReferenceSequence a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "ReferenceSequence" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty smoc_schema:source_uri ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty smoc_schema:location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty smoc_schema:location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:source_uri ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty smoc_schema:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:sequence_md5 ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:name ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty smoc_schema:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty smoc_schema:sequence_md5 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:location ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( linkml:String [ a rdfs:Datatype ;
@@ -226,33 +252,6 @@ smoc_schema:ReferenceSequence a owl:Class,
             owl:onProperty smoc_schema:sequence_md5 ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:source_uri ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty smoc_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty smoc_schema:location ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:sequence_md5 ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uri ;
-            owl:onProperty smoc_schema:source_uri ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:sequence_md5 ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uri ;
-            owl:onProperty smoc_schema:location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty smoc_schema:source_uri ] ;
     skos:definition "A contiguous sequence of DNA part of a reference coordinate system (genome assembly)." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
@@ -288,6 +287,13 @@ smoc_schema:has_sequence a owl:ObjectProperty,
     rdfs:label "has_sequence" ;
     rdfs:range smoc_schema:ReferenceSequence ;
     skos:definition "Denotes that a sequence beolongs to a collection (e.g. a reference genome)." ;
+    skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
+
+smoc_schema:omics_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "omics_type" ;
+    rdfs:range smoc_schema:OmicsType ;
+    skos:definition "The type of omics considered." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
 
 smoc_schema:Sample a owl:Class,
@@ -378,38 +384,38 @@ smoc_schema:DataEntity a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "DataEntity" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom smoc_schema:Sample ;
-            owl:onProperty smoc_schema:has_sample ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uri ;
-            owl:onProperty smoc_schema:location ],
+            owl:minCardinality 1 ;
+            owl:onProperty smoc_schema:data_format ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty smoc_schema:has_reference ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:has_reference ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom smoc_schema:ReferenceGenome ;
-            owl:onProperty smoc_schema:has_reference ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty smoc_schema:data_format ],
         [ a owl:Restriction ;
             owl:allValuesFrom smoc_schema:DataFormat ;
             owl:onProperty smoc_schema:data_format ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty smoc_schema:data_format ],
+            owl:allValuesFrom smoc_schema:ReferenceGenome ;
+            owl:onProperty smoc_schema:has_reference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty smoc_schema:location ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty smoc_schema:location ],
         [ a owl:Restriction ;
+            owl:allValuesFrom smoc_schema:Sample ;
+            owl:onProperty smoc_schema:has_sample ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:location ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty smoc_schema:has_sample ] ;
+            owl:onProperty smoc_schema:has_sample ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:has_reference ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty smoc_schema:data_format ] ;
     skos:definition "An entity containing data." ;
     skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
 
@@ -434,6 +440,12 @@ smoc_schema:DataFormat a owl:Class,
         EDAM:format_3462,
         EDAM:format_3915 .
 
+smoc_schema:name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    skos:definition "A human-readable name for a thing" ;
+    skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
+
 smoc_schema:OmicsType a owl:Class,
         linkml:EnumDefinition ;
     owl:unionOf ( NCIT:C84343 NCIT:C153189 NCIT:C49019 NCIT:C20085 ) ;
@@ -441,12 +453,6 @@ smoc_schema:OmicsType a owl:Class,
         NCIT:C20085,
         NCIT:C49019,
         NCIT:C84343 .
-
-smoc_schema:name a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "name" ;
-    skos:definition "A human-readable name for a thing" ;
-    skos:inScheme <https://w3id.org/sdsc-ordes/smoc-schema> .
 
 <https://w3id.org/sdsc-ordes/smoc-schema> a owl:Ontology ;
     rdfs:label "smoc-schema" ;

@@ -79,8 +79,18 @@
                         "$ref": "#/$defs/Sample"
                     },
                     "type": "array"
+                },
+                "omics_type": {
+                    "description": "The type of omics considered.",
+                    "items": {
+                        "$ref": "#/$defs/OmicsType"
+                    },
+                    "type": "array"
                 }
             },
+            "required": [
+                "omics_type"
+            ],
             "title": "Assay",
             "type": "object"
         },

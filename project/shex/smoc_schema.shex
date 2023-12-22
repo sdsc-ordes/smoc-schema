@@ -62,7 +62,8 @@ linkml:Sparqlpath xsd:string
 
 <Assay> CLOSED {
     (  $<Assay_tes> (  <has_sample> @<Sample> * ;
-          <has_data> @<DataEntity> *
+          <has_data> @<DataEntity> * ;
+          <omics_type> @<OmicsType> +
        ) ;
        rdf:type [ <Assay> ] ?
     )

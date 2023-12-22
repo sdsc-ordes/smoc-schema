@@ -18,6 +18,7 @@ type Assay
   {
     hasSample: [Sample]
     hasData: [DataEntity]
+    omicsType: [OmicsType]!
   }
 
 type DataEntity

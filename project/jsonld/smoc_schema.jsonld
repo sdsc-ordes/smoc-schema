@@ -508,6 +508,10 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/omics_type",
       "multivalued": true,
+      "owner": "Assay",
+      "domain_of": [
+        "Assay"
+      ],
       "range": "OmicsType",
       "required": true,
       "@type": "SlotDefinition"
@@ -740,7 +744,8 @@
       ],
       "slots": [
         "has_sample",
-        "has_data"
+        "has_data",
+        "omics_type"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/sdsc-ordes/smoc-schema/Assay",
@@ -880,9 +885,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "smoc_schema.yaml",
-  "source_file_date": "2023-12-22T14:21:54",
-  "source_file_size": 6476,
-  "generation_date": "2023-12-22T14:22:07",
+  "source_file_date": "2023-12-22T15:02:56",
+  "source_file_size": 6495,
+  "generation_date": "2023-12-22T15:03:16",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/smoc_schema.context.jsonld",
