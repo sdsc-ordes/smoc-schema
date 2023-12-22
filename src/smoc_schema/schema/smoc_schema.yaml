@@ -59,6 +59,7 @@ classes:
     slots:
       - has_sample
       - has_data
+      - omics_type
 
   Sample:
     see_also:
