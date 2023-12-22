@@ -1,5 +1,5 @@
-# Auto generated from smoc_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-12-22T13:53:43
+# Auto generated from smoc_schema.yaml by pythongen.py version: 0.0.1
+# Generation date: 2023-12-22T14:22:11
 # Schema: smoc-schema
 #
 # id: https://w3id.org/sdsc-ordes/smoc-schema
@@ -7,7 +7,6 @@
 # license: MIT
 
 import dataclasses
-import sys
 import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
@@ -145,7 +144,7 @@ class Assay(YAMLRoot):
             self.has_sample = [self.has_sample] if self.has_sample is not None else []
         self.has_sample = [v if isinstance(v, Sample) else Sample(**as_dict(v)) for v in self.has_sample]
 
-        self._normalize_inlined_as_dict(slot_name="has_data", slot_type=DataEntity, key_name="uri", keyed=False)
+        self._normalize_inlined_as_dict(slot_name="has_data", slot_type=DataEntity, key_name="location", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -189,16 +188,16 @@ class DataEntity(YAMLRoot):
     class_name: ClassVar[str] = "DataEntity"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.DataEntity
 
-    uri: Union[str, URI] = None
+    location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
     has_sample: Optional[Union[Union[dict, Sample], List[Union[dict, Sample]]]] = empty_list()
     has_reference: Optional[Union[dict, "ReferenceGenome"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.uri):
-            self.MissingRequiredField("uri")
-        if not isinstance(self.uri, URI):
-            self.uri = URI(self.uri)
+        if self._is_empty(self.location):
+            self.MissingRequiredField("location")
+        if not isinstance(self.location, URI):
+            self.location = URI(self.location)
 
         if self._is_empty(self.data_format):
             self.MissingRequiredField("data_format")
@@ -236,7 +235,7 @@ class ReferenceGenome(YAMLRoot):
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
-        self._normalize_inlined_as_dict(slot_name="has_sequence", slot_type=ReferenceSequence, key_name="uri", keyed=False)
+        self._normalize_inlined_as_dict(slot_name="has_sequence", slot_type=ReferenceSequence, key_name="location", keyed=False)
 
         if not isinstance(self.taxon_id, list):
             self.taxon_id = [self.taxon_id] if self.taxon_id is not None else []
@@ -260,16 +259,16 @@ class ReferenceSequence(YAMLRoot):
     class_name: ClassVar[str] = "ReferenceSequence"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.ReferenceSequence
 
-    uri: Union[str, URI] = None
+    location: Union[str, URI] = None
     name: Optional[str] = None
     sequence_md5: Optional[str] = None
     source_uri: Optional[Union[str, URI]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.uri):
-            self.MissingRequiredField("uri")
-        if not isinstance(self.uri, URI):
-            self.uri = URI(self.uri)
+        if self._is_empty(self.location):
+            self.MissingRequiredField("location")
+        if not isinstance(self.location, URI):
+            self.location = URI(self.location)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -295,7 +294,7 @@ class AlignmentSet(DataEntity):
     class_name: ClassVar[str] = "AlignmentSet"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.AlignmentSet
 
-    uri: Union[str, URI] = None
+    location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
 
 @dataclass
@@ -310,7 +309,7 @@ class VariantSet(DataEntity):
     class_name: ClassVar[str] = "VariantSet"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.VariantSet
 
-    uri: Union[str, URI] = None
+    location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
 
 @dataclass
@@ -325,7 +324,7 @@ class Array(DataEntity):
     class_name: ClassVar[str] = "Array"
     class_model_uri: ClassVar[URIRef] = SMOC_SCHEMA.Array
 
-    uri: Union[str, URI] = None
+    location: Union[str, URI] = None
     data_format: Union[str, "DataFormat"] = None
 
 @dataclass
@@ -351,18 +350,22 @@ class StudyCollection(YAMLRoot):
 # Enumerations
 class OmicsType(EnumDefinitionImpl):
 
-    GENOMICS = PermissibleValue(text="GENOMICS",
-                                       description="The study of the structure, function, expression, evolution, mapping and editing of genomes.",
-                                       meaning=NCIT["C84343"])
-    TRANSCRIPTOMICS = PermissibleValue(text="TRANSCRIPTOMICS",
-                                                     description="The study of the complete set of RNA transcripts that are produced by the genome.",
-                                                     meaning=NCIT["C153189"])
-    METABOLOMICS = PermissibleValue(text="METABOLOMICS",
-                                               description="The study of biological metabolic profiles.",
-                                               meaning=NCIT["C49019"])
-    PROTEOMICS = PermissibleValue(text="PROTEOMICS",
-                                           description="The global analysis of cellular proteins.",
-                                           meaning=NCIT["C20085"])
+    GENOMICS = PermissibleValue(
+        text="GENOMICS",
+        description="The study of the structure, function, expression, evolution, mapping and editing of genomes.",
+        meaning=NCIT["C84343"])
+    TRANSCRIPTOMICS = PermissibleValue(
+        text="TRANSCRIPTOMICS",
+        description="The study of the complete set of RNA transcripts that are produced by the genome.",
+        meaning=NCIT["C153189"])
+    METABOLOMICS = PermissibleValue(
+        text="METABOLOMICS",
+        description="The study of biological metabolic profiles.",
+        meaning=NCIT["C49019"])
+    PROTEOMICS = PermissibleValue(
+        text="PROTEOMICS",
+        description="The global analysis of cellular proteins.",
+        meaning=NCIT["C20085"])
 
     _defn = EnumDefinition(
         name="OmicsType",
@@ -370,15 +373,18 @@ class OmicsType(EnumDefinitionImpl):
 
 class DataFormat(EnumDefinitionImpl):
 
-    CRAM = PermissibleValue(text="CRAM",
-                               description="Referenced-based compression of alignment format.",
-                               meaning=EDAM["format_3462"])
-    FASTQ = PermissibleValue(text="FASTQ",
-                                 description="FASTQ short read format with sequence and any type of quality scores.",
-                                 meaning=EDAM["format_1930"])
-    Zarr = PermissibleValue(text="Zarr",
-                               description="Chunked, compressed N-dimensional arrays.",
-                               meaning=EDAM["format_3915"])
+    CRAM = PermissibleValue(
+        text="CRAM",
+        description="Referenced-based compression of alignment format.",
+        meaning=EDAM["format_3462"])
+    FASTQ = PermissibleValue(
+        text="FASTQ",
+        description="FASTQ short read format with sequence and any type of quality scores.",
+        meaning=EDAM["format_1930"])
+    Zarr = PermissibleValue(
+        text="Zarr",
+        description="Chunked, compressed N-dimensional arrays.",
+        meaning=EDAM["format_3915"])
 
     _defn = EnumDefinition(
         name="DataFormat",
@@ -424,8 +430,8 @@ slots.taxon_id = Slot(uri=SMOC_SCHEMA.taxon_id, name="taxon_id", curie=SMOC_SCHE
 slots.collector = Slot(uri=SMOC_SCHEMA.collector, name="collector", curie=SMOC_SCHEMA.curie('collector'),
                    model_uri=SMOC_SCHEMA.collector, domain=None, range=Optional[Union[str, List[str]]])
 
-slots.uri = Slot(uri=SMOC_SCHEMA.uri, name="uri", curie=SMOC_SCHEMA.curie('uri'),
-                   model_uri=SMOC_SCHEMA.uri, domain=None, range=Union[str, URI])
+slots.location = Slot(uri=SMOC_SCHEMA.location, name="location", curie=SMOC_SCHEMA.curie('location'),
+                   model_uri=SMOC_SCHEMA.location, domain=None, range=Union[str, URI])
 
 slots.sequence_md5 = Slot(uri=SMOC_SCHEMA.sequence_md5, name="sequence_md5", curie=SMOC_SCHEMA.curie('sequence_md5'),
                    model_uri=SMOC_SCHEMA.sequence_md5, domain=None, range=Optional[str],

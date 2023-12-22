@@ -19,13 +19,13 @@
                     },
                     "type": "array"
                 },
-                "uri": {
-                    "description": "The uniform resource identifier to use to access a resource, either on the web or the filesystem",
+                "location": {
+                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
                     "type": "string"
                 }
             },
             "required": [
-                "uri",
+                "location",
                 "data_format"
             ],
             "title": "AlignmentSet",
@@ -50,13 +50,13 @@
                     },
                     "type": "array"
                 },
-                "uri": {
-                    "description": "The uniform resource identifier to use to access a resource, either on the web or the filesystem",
+                "location": {
+                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
                     "type": "string"
                 }
             },
             "required": [
-                "uri",
+                "location",
                 "data_format"
             ],
             "title": "Array",
@@ -103,13 +103,13 @@
                     },
                     "type": "array"
                 },
-                "uri": {
-                    "description": "The uniform resource identifier to use to access a resource, either on the web or the filesystem",
+                "location": {
+                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
                     "type": "string"
                 }
             },
             "required": [
-                "uri",
+                "location",
                 "data_format"
             ],
             "title": "DataEntity",
@@ -193,6 +193,10 @@
             "additionalProperties": false,
             "description": "A contiguous sequence of DNA part of a reference coordinate system (genome assembly).",
             "properties": {
+                "location": {
+                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
+                    "type": "string"
+                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
@@ -205,14 +209,10 @@
                 "source_uri": {
                     "description": "The URI from which a resource was obtained.",
                     "type": "string"
-                },
-                "uri": {
-                    "description": "The uniform resource identifier to use to access a resource, either on the web or the filesystem",
-                    "type": "string"
                 }
             },
             "required": [
-                "uri"
+                "location"
             ],
             "title": "ReferenceSequence",
             "type": "object"
@@ -353,13 +353,13 @@
                     },
                     "type": "array"
                 },
-                "uri": {
-                    "description": "The uniform resource identifier to use to access a resource, either on the web or the filesystem",
+                "location": {
+                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
                     "type": "string"
                 }
             },
             "required": [
-                "uri",
+                "location",
                 "data_format"
             ],
             "title": "VariantSet",
@@ -369,6 +369,7 @@
     "$id": "https://w3id.org/sdsc-ordes/smoc-schema",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "additionalProperties": true,
+    "description": "A holder for Study objects",
     "metamodel_version": "1.7.0",
     "properties": {
         "entries": {

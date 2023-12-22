@@ -1,7 +1,7 @@
 // A data entity consisting of genomic intervals aligned to a reference.
 message AlignmentSet
  {
-  uri uri = 0
+  uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
@@ -9,7 +9,7 @@ message AlignmentSet
 // Data entity consisting of an N-dimensional array.
 message Array
  {
-  uri uri = 0
+  uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
@@ -23,7 +23,7 @@ message Assay
 // An entity containing data.
 message DataEntity
  {
-  uri uri = 0
+  uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0
@@ -47,7 +47,7 @@ message ReferenceGenome
 message ReferenceSequence
  {
   string name = 0
-  uri uri = 0
+  uri location = 0
   string sequenceMd5 = 0
   uri sourceUri = 0
  }
@@ -75,7 +75,7 @@ message StudyCollection
 // A data entity consisting of genomic variants relative to a reference.
 message VariantSet
  {
-  uri uri = 0
+  uri location = 0
   dataFormat dataFormat = 0
  repeated  sample hasSample = 0
   referenceGenome hasReference = 0

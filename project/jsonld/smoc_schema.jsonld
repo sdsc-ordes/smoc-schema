@@ -602,11 +602,11 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "uri",
-      "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/uri",
-      "description": "The uniform resource identifier to use to access a resource, either on the web or the filesystem",
+      "name": "location",
+      "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/location",
+      "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
-      "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/uri",
+      "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/location",
       "owner": "ReferenceSequence",
       "domain_of": [
         "DataEntity",
@@ -768,7 +768,7 @@
       "description": "An entity containing data.",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "slots": [
-        "uri",
+        "location",
         "data_format",
         "has_sample",
         "has_reference"
@@ -799,7 +799,7 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "slots": [
         "name",
-        "uri",
+        "location",
         "sequence_md5",
         "source_uri"
       ],
@@ -814,7 +814,7 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "is_a": "DataEntity",
       "slots": [
-        "uri",
+        "location",
         "data_format",
         "has_sample",
         "has_reference"
@@ -830,7 +830,7 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "is_a": "DataEntity",
       "slots": [
-        "uri",
+        "location",
         "data_format",
         "has_sample",
         "has_reference"
@@ -846,7 +846,7 @@
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "is_a": "DataEntity",
       "slots": [
-        "uri",
+        "location",
         "data_format",
         "has_sample",
         "has_reference"
@@ -880,9 +880,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "smoc_schema.yaml",
-  "source_file_date": "2023-12-22T13:51:54",
-  "source_file_size": 6468,
-  "generation_date": "2023-12-22T13:53:27",
+  "source_file_date": "2023-12-22T14:21:54",
+  "source_file_size": 6476,
+  "generation_date": "2023-12-22T14:22:07",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/smoc_schema.context.jsonld",

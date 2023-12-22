@@ -1,27 +1,27 @@
 
 
 CREATE TABLE "AlignmentSet" (
-	uri TEXT NOT NULL, 
+	location TEXT NOT NULL, 
 	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, data_format, has_sample, has_reference)
+	PRIMARY KEY (location, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "Array" (
-	uri TEXT NOT NULL, 
+	location TEXT NOT NULL, 
 	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, data_format, has_sample, has_reference)
+	PRIMARY KEY (location, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "DataEntity" (
-	uri TEXT NOT NULL, 
+	location TEXT NOT NULL, 
 	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, data_format, has_sample, has_reference)
+	PRIMARY KEY (location, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "NamedThing" (
@@ -41,10 +41,10 @@ CREATE TABLE "ReferenceGenome" (
 
 CREATE TABLE "ReferenceSequence" (
 	name TEXT, 
-	uri TEXT NOT NULL, 
+	location TEXT NOT NULL, 
 	sequence_md5 TEXT, 
 	source_uri TEXT, 
-	PRIMARY KEY (name, uri, sequence_md5, source_uri)
+	PRIMARY KEY (name, location, sequence_md5, source_uri)
 );
 
 CREATE TABLE "Sample" (
@@ -68,11 +68,11 @@ CREATE TABLE "StudyCollection" (
 );
 
 CREATE TABLE "VariantSet" (
-	uri TEXT NOT NULL, 
+	location TEXT NOT NULL, 
 	data_format VARCHAR(5) NOT NULL, 
 	has_sample TEXT, 
 	has_reference TEXT, 
-	PRIMARY KEY (uri, data_format, has_sample, has_reference)
+	PRIMARY KEY (location, data_format, has_sample, has_reference)
 );
 
 CREATE TABLE "Assay" (

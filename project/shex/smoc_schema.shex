@@ -70,7 +70,7 @@ linkml:Sparqlpath xsd:string
 
 <DataEntity>  (
     CLOSED {
-       (  $<DataEntity_tes> (  <uri> @linkml:Uri ;
+       (  $<DataEntity_tes> (  <location> @linkml:Uri ;
              <data_format> @<DataFormat> ;
              <has_sample> @<Sample> * ;
              <has_reference> @<ReferenceGenome> ?
@@ -102,7 +102,7 @@ linkml:Sparqlpath xsd:string
 
 <ReferenceSequence> CLOSED {
     (  $<ReferenceSequence_tes> (  schema1:name @linkml:String ? ;
-          <uri> @linkml:Uri ;
+          <location> @linkml:Uri ;
           <sequence_md5> @linkml:String ? ;
           <source_uri> @linkml:Uri ?
        ) ;
