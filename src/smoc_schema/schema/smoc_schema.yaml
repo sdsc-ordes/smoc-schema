@@ -9,7 +9,7 @@ see_also:
   - https://sdsc-ordes.github.io/smoc-schema
 
 prefixes:
-  smoc_schema: https://w3id.org/sdsc-ordes/smoc-schema/
+  smoc: https://w3id.org/sdsc-ordes/smoc-schema/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/
   schema: http://schema.org/
@@ -19,7 +19,7 @@ prefixes:
   FG: https://w3id.org/fair-genomes/ontology/
   sphn: https://biomedit.ch/rdf/sphn-schema/sphn#
   example: https://example.org/
-default_prefix: smoc_schema
+default_prefix: smoc
 default_range: string
 
 imports:
