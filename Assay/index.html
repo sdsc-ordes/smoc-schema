@@ -142,6 +142,11 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+    Inheritance
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
     Slots
   </a>
@@ -206,9 +211,13 @@
 </a>
 <h1 id="class-assay">Class: Assay</h1>
 <p><em>A coordinated set of actions designed to generate data from samples.</em></p>
-<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Assay">smoc_schema:Assay</a></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Assay">smoc:Assay</a></p>
 <div class="mermaid"> classDiagram
     class Assay
+      NamedThing &lt;|-- Assay
+
+      Assay : description
+
       Assay : has_data
 
           Assay --|&gt; DataEntity : has_data
@@ -217,9 +226,23 @@
 
           Assay --|&gt; Sample : has_sample
 
+      Assay : id
+
+      Assay : name
+
+      Assay : omics_type
+
+          Assay --|&gt; OmicsType : omics_type
+
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><strong>Assay</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -242,6 +265,30 @@
 <td>0..* <br/> <a href="../DataEntity/">DataEntity</a></td>
 <td>Data entity included in a given collection</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../omics_type/">omics_type</a></td>
+<td>1..* <br/> <a href="../OmicsType/">OmicsType</a></td>
+<td>The type of omics considered</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>A unique identifier for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable name for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable description for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 </tbody>
 </table>
@@ -285,11 +332,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>smoc_schema:Assay</td>
+<td>smoc:Assay</td>
 </tr>
 <tr>
 <td>native</td>
-<td>smoc_schema:Assay</td>
+<td>smoc:Assay</td>
 </tr>
 </tbody>
 </table>
@@ -303,9 +350,11 @@ from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 see_also:
 - NCIT:C42790
 - sphn:Assay
+is_a: NamedThing
 slots:
 - has_sample
 - has_data
+- omics_type
 
 </code></pre>
 </details>
@@ -317,12 +366,14 @@ from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 see_also:
 - NCIT:C42790
 - sphn:Assay
+is_a: NamedThing
 attributes:
   has_sample:
     name: has_sample
     description: Biological sample included or described by a given thing.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     multivalued: true
     alias: has_sample
     owner: Assay
@@ -335,12 +386,60 @@ attributes:
     description: Data entity included in a given collection.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     multivalued: true
     alias: has_data
     owner: Assay
     domain_of:
     - Assay
     range: DataEntity
+  omics_type:
+    name: omics_type
+    description: The type of omics considered.
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    multivalued: true
+    alias: omics_type
+    owner: Assay
+    domain_of:
+    - Assay
+    range: OmicsType
+    required: true
+  id:
+    name: id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:identifier
+    identifier: true
+    alias: id
+    owner: Assay
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:name
+    alias: name
+    owner: Assay
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:description
+    alias: description
+    owner: Assay
+    domain_of:
+    - NamedThing
+    range: string
 
 </code></pre>
 </details>

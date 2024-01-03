@@ -206,16 +206,22 @@
 </a>
 <h1 id="class-dataentity">Class: DataEntity</h1>
 <p><em>An entity containing data.</em></p>
-<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/DataEntity">smoc_schema:DataEntity</a></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/DataEntity">smoc:DataEntity</a></p>
 <div class="mermaid"> classDiagram
     class DataEntity
+      NamedThing &lt;|-- DataEntity
+
+
       DataEntity &lt;|-- AlignmentSet
       DataEntity &lt;|-- VariantSet
       DataEntity &lt;|-- Array
 
+
       DataEntity : data_format
 
           DataEntity --|&gt; DataFormat : data_format
+
+      DataEntity : description
 
       DataEntity : has_reference
 
@@ -225,16 +231,23 @@
 
           DataEntity --|&gt; Sample : has_sample
 
+      DataEntity : id
+
       DataEntity : location
+
+      DataEntity : name
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
 <li><strong>DataEntity</strong><ul>
 <li><a href="../AlignmentSet/">AlignmentSet</a></li>
 <li><a href="../VariantSet/">VariantSet</a></li>
 <li><a href="../Array/">Array</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -273,6 +286,24 @@
 <td>Specifies the reference coordinate system used by an omics dataset</td>
 <td>direct</td>
 </tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>A unique identifier for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable name for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable description for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="usages">Usages</h2>
@@ -310,11 +341,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>smoc_schema:DataEntity</td>
+<td>smoc:DataEntity</td>
 </tr>
 <tr>
 <td>native</td>
-<td>smoc_schema:DataEntity</td>
+<td>smoc:DataEntity</td>
 </tr>
 </tbody>
 </table>
@@ -325,6 +356,7 @@
 <pre><code class="language-yaml">name: DataEntity
 description: An entity containing data.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+is_a: NamedThing
 slots:
 - location
 - data_format
@@ -338,6 +370,7 @@ slots:
 <pre><code class="language-yaml">name: DataEntity
 description: An entity containing data.
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+is_a: NamedThing
 attributes:
   location:
     name: location
@@ -349,7 +382,7 @@ attributes:
     owner: DataEntity
     domain_of:
     - DataEntity
-    - ReferenceSequence
+    - ReferenceGenome
     range: uri
     required: true
   data_format:
@@ -368,6 +401,7 @@ attributes:
     description: Biological sample included or described by a given thing.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     multivalued: true
     alias: has_sample
     owner: DataEntity
@@ -380,11 +414,47 @@ attributes:
     description: Specifies the reference coordinate system used by an omics dataset.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     alias: has_reference
     owner: DataEntity
     domain_of:
     - DataEntity
     range: ReferenceGenome
+  id:
+    name: id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:identifier
+    identifier: true
+    alias: id
+    owner: DataEntity
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:name
+    alias: name
+    owner: DataEntity
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:description
+    alias: description
+    owner: DataEntity
+    domain_of:
+    - NamedThing
+    range: string
 
 </code></pre>
 </details>

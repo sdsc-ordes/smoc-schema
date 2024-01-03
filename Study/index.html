@@ -211,7 +211,7 @@
 </a>
 <h1 id="class-study">Class: Study</h1>
 <p><em>Represents the digital object. It encapsulates omics and other datasets and their metadata.</em></p>
-<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Study">smoc_schema:Study</a></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Study">smoc:Study</a></p>
 <div class="mermaid"> classDiagram
     class Study
       NamedThing &lt;|-- Study
@@ -329,11 +329,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>smoc_schema:Study</td>
+<td>smoc:Study</td>
 </tr>
 <tr>
 <td>native</td>
-<td>smoc_schema:Study</td>
+<td>smoc:Study</td>
 </tr>
 </tbody>
 </table>
@@ -397,6 +397,7 @@ attributes:
     description: An assay that was performed as part of a given thing.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     multivalued: true
     alias: has_assay
     owner: Study
@@ -426,8 +427,6 @@ attributes:
     owner: Study
     domain_of:
     - NamedThing
-    - ReferenceGenome
-    - ReferenceSequence
     range: string
   description:
     name: description

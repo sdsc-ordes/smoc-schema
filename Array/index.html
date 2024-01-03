@@ -201,7 +201,7 @@
 </a>
 <h1 id="class-array">Class: Array</h1>
 <p><em>Data entity consisting of an N-dimensional array.</em></p>
-<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Array">smoc_schema:Array</a></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/Array">smoc:Array</a></p>
 <div class="mermaid"> classDiagram
     class Array
       DataEntity &lt;|-- Array
@@ -209,6 +209,8 @@
       Array : data_format
 
           Array --|&gt; DataFormat : data_format
+
+      Array : description
 
       Array : has_reference
 
@@ -218,14 +220,21 @@
 
           Array --|&gt; Sample : has_sample
 
+      Array : id
+
       Array : location
+
+      Array : name
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
 <li><a href="../DataEntity/">DataEntity</a><ul>
 <li><strong>Array</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -264,6 +273,24 @@
 <td>Specifies the reference coordinate system used by an omics dataset</td>
 <td><a href="../DataEntity/">DataEntity</a></td>
 </tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>A unique identifier for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable name for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable description for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -282,11 +309,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>smoc_schema:Array</td>
+<td>smoc:Array</td>
 </tr>
 <tr>
 <td>native</td>
-<td>smoc_schema:Array</td>
+<td>smoc:Array</td>
 </tr>
 </tbody>
 </table>
@@ -318,7 +345,7 @@ attributes:
     owner: Array
     domain_of:
     - DataEntity
-    - ReferenceSequence
+    - ReferenceGenome
     range: uri
     required: true
   data_format:
@@ -337,6 +364,7 @@ attributes:
     description: Biological sample included or described by a given thing.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     multivalued: true
     alias: has_sample
     owner: Array
@@ -349,11 +377,47 @@ attributes:
     description: Specifies the reference coordinate system used by an omics dataset.
     from_schema: https://w3id.org/sdsc-ordes/smoc-schema
     rank: 1000
+    is_a: has_part
     alias: has_reference
     owner: Array
     domain_of:
     - DataEntity
     range: ReferenceGenome
+  id:
+    name: id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:identifier
+    identifier: true
+    alias: id
+    owner: Array
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:name
+    alias: name
+    owner: Array
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:description
+    alias: description
+    owner: Array
+    domain_of:
+    - NamedThing
+    range: string
 
 </code></pre>
 </details>

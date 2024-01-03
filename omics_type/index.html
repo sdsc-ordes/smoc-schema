@@ -256,6 +256,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#applicable-classes" class="md-nav__link">
+    Applicable Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#properties" class="md-nav__link">
     Properties
   </a>
@@ -311,9 +318,26 @@
 
 <h1 id="slot-omics_type">Slot: omics_type</h1>
 <p><em>The type of omics considered.</em></p>
-<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/omics_type">smoc_schema:omics_type</a></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/omics_type">smoc:omics_type</a></p>
 <!-- no inheritance hierarchy -->
 
+<h2 id="applicable-classes">Applicable Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Modifies Slot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Assay/">Assay</a></td>
+<td>A coordinated set of actions designed to generate data from samples</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
@@ -340,6 +364,8 @@ from_schema: https://w3id.org/sdsc-ordes/smoc-schema
 rank: 1000
 multivalued: true
 alias: omics_type
+domain_of:
+- Assay
 range: OmicsType
 required: true
 

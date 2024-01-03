@@ -142,6 +142,11 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+    Inheritance
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
     Slots
   </a>
@@ -201,10 +206,14 @@
 </a>
 <h1 id="class-referencesequence">Class: ReferenceSequence</h1>
 <p><em>A contiguous sequence of DNA part of a reference coordinate system (genome assembly).</em></p>
-<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/ReferenceSequence">smoc_schema:ReferenceSequence</a></p>
+<p>URI: <a href="https://w3id.org/sdsc-ordes/smoc-schema/ReferenceSequence">smoc:ReferenceSequence</a></p>
 <div class="mermaid"> classDiagram
     class ReferenceSequence
-      ReferenceSequence : location
+      NamedThing &lt;|-- ReferenceSequence
+
+      ReferenceSequence : description
+
+      ReferenceSequence : id
 
       ReferenceSequence : name
 
@@ -214,7 +223,13 @@
 
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><strong>ReferenceSequence</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -227,18 +242,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for a thing</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../location/">location</a></td>
-<td>1..1 <br/> <a href="../Uri/">Uri</a></td>
-<td>The uniform resource identifier to access a resource, either on the web or th...</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../sequence_md5/">sequence_md5</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The pre-computed hash uniquely representing a biological sequence</td>
@@ -249,6 +252,24 @@
 <td>0..1 <br/> <a href="../Uri/">Uri</a></td>
 <td>The URI from which a resource was obtained</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>A unique identifier for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable name for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable description for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
 </tr>
 </tbody>
 </table>
@@ -287,11 +308,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>smoc_schema:ReferenceSequence</td>
+<td>smoc:ReferenceSequence</td>
 </tr>
 <tr>
 <td>native</td>
-<td>smoc_schema:ReferenceSequence</td>
+<td>smoc:ReferenceSequence</td>
 </tr>
 </tbody>
 </table>
@@ -303,9 +324,8 @@
 description: A contiguous sequence of DNA part of a reference coordinate system (genome
   assembly).
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+is_a: NamedThing
 slots:
-- name
-- location
 - sequence_md5
 - source_uri
 
@@ -317,33 +337,8 @@ slots:
 description: A contiguous sequence of DNA part of a reference coordinate system (genome
   assembly).
 from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+is_a: NamedThing
 attributes:
-  name:
-    name: name
-    description: A human-readable name for a thing
-    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-    rank: 1000
-    slot_uri: schema:name
-    alias: name
-    owner: ReferenceSequence
-    domain_of:
-    - NamedThing
-    - ReferenceGenome
-    - ReferenceSequence
-    range: string
-  location:
-    name: location
-    description: The uniform resource identifier to access a resource, either on the
-      web or the filesystem
-    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
-    rank: 1000
-    alias: location
-    owner: ReferenceSequence
-    domain_of:
-    - DataEntity
-    - ReferenceSequence
-    range: uri
-    required: true
   sequence_md5:
     name: sequence_md5
     description: The pre-computed hash uniquely representing a biological sequence.
@@ -368,6 +363,41 @@ attributes:
     - ReferenceGenome
     - ReferenceSequence
     range: uri
+  id:
+    name: id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:identifier
+    identifier: true
+    alias: id
+    owner: ReferenceSequence
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:name
+    alias: name
+    owner: ReferenceSequence
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/sdsc-ordes/smoc-schema
+    rank: 1000
+    slot_uri: schema:description
+    alias: description
+    owner: ReferenceSequence
+    domain_of:
+    - NamedThing
+    range: string
 
 </code></pre>
 </details>

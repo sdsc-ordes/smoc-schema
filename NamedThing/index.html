@@ -205,6 +205,11 @@
 <div class="mermaid"> classDiagram
     class NamedThing
       NamedThing &lt;|-- Study
+      NamedThing &lt;|-- Assay
+      NamedThing &lt;|-- Sample
+      NamedThing &lt;|-- DataEntity
+      NamedThing &lt;|-- ReferenceGenome
+      NamedThing &lt;|-- ReferenceSequence
 
       NamedThing : description
 
@@ -218,6 +223,11 @@
 <ul>
 <li><strong>NamedThing</strong><ul>
 <li><a href="../Study/">Study</a></li>
+<li><a href="../Assay/">Assay</a></li>
+<li><a href="../Sample/">Sample</a></li>
+<li><a href="../DataEntity/">DataEntity</a></li>
+<li><a href="../ReferenceGenome/">ReferenceGenome</a></li>
+<li><a href="../ReferenceSequence/">ReferenceSequence</a></li>
 </ul>
 </li>
 </ul>
@@ -272,7 +282,7 @@
 </tr>
 <tr>
 <td>native</td>
-<td>smoc_schema:NamedThing</td>
+<td>smoc:NamedThing</td>
 </tr>
 </tbody>
 </table>
@@ -319,8 +329,6 @@ attributes:
     owner: NamedThing
     domain_of:
     - NamedThing
-    - ReferenceGenome
-    - ReferenceSequence
     range: string
   description:
     name: description
