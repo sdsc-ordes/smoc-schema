@@ -149,6 +149,9 @@ slots:
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
+  has_part:
+    slot_uri: schema:hasPart
+    description: Indicates an item that is part of this item.
 
   completion_date:
     slot_uri: FG:completion_date
@@ -165,14 +168,17 @@ slots:
     required: true
     multivalued: true
   has_assay:
+    is_a: has_part
     description: An assay that was performed as part of a given thing.
     range: Assay
     multivalued: true
   has_sample:
+    is_a: has_part
     description: Biological sample included or described by a given thing.
     range: Sample
     multivalued: true
   has_data:
+    is_a: has_part
     description: Data entity included in a given collection.
     range: DataEntity
     multivalued: true
@@ -204,10 +210,12 @@ slots:
     description: The URI from which a resource was obtained.
     range: uri
   has_sequence:
-    description: Denotes that a sequence beolongs to a collection (e.g. a reference genome).
+    is_a: has_part
+    description: Denotes that a sequence belongs to a collection (e.g. a reference genome).
     range: ReferenceSequence
     multivalued: true
   has_reference:
+    is_a: has_part
     description: Specifies the reference coordinate system used by an omics dataset.
     range: ReferenceGenome
 
