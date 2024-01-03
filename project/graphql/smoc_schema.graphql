@@ -53,6 +53,7 @@ type ReferenceGenome
     id: Uriorcurie!
     name: String
     description: String
+    location: Uri!
     hasSequence: [ReferenceSequence]
     taxonId: [Integer]
     sourceUri: Uri
@@ -63,7 +64,6 @@ type ReferenceSequence
     id: Uriorcurie!
     name: String
     description: String
-    location: Uri!
     sequenceMd5: String
     sourceUri: Uri
   }

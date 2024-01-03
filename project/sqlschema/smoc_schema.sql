@@ -11,6 +11,7 @@ CREATE TABLE "ReferenceGenome" (
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 
+	location TEXT NOT NULL, 
 	source_uri TEXT, 
 	PRIMARY KEY (id)
 );
@@ -74,7 +75,6 @@ CREATE TABLE "ReferenceSequence" (
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 
-	location TEXT NOT NULL, 
 	sequence_md5 TEXT, 
 	source_uri TEXT, 
 	"ReferenceGenome_id" TEXT, 

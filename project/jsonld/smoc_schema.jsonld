@@ -12,7 +12,7 @@
   "license": "MIT",
   "prefixes": [
     {
-      "prefix_prefix": "smoc_schema",
+      "prefix_prefix": "smoc",
       "prefix_reference": "https://w3id.org/sdsc-ordes/smoc-schema/"
     },
     {
@@ -52,7 +52,7 @@
       "prefix_reference": "https://example.org/"
     }
   ],
-  "default_prefix": "smoc_schema",
+  "default_prefix": "smoc",
   "default_range": "string",
   "types": [
     {
@@ -411,6 +411,11 @@
           "text": "Zarr",
           "description": "Chunked, compressed N-dimensional arrays.",
           "meaning": "EDAM:format_3915"
+        },
+        {
+          "text": "FASTA",
+          "description": "FASTA sequence format including NCBI-style IDs.",
+          "meaning": "EDAM:format_1929"
         }
       ]
     }
@@ -467,6 +472,18 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "has_part",
+      "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_part",
+      "description": "Indicates an item that is part of this item.",
+      "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "mappings": [
+        "http://schema.org/hasPart"
+      ],
+      "slot_uri": "http://schema.org/hasPart",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "completion_date",
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/completion_date",
       "description": "The date on which the concluding information for this study is completed.",
@@ -519,6 +536,7 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_assay",
       "description": "An assay that was performed as part of a given thing.",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "has_part",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_assay",
       "multivalued": true,
       "owner": "Study",
@@ -533,6 +551,7 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_sample",
       "description": "Biological sample included or described by a given thing.",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "has_part",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_sample",
       "multivalued": true,
       "owner": "DataEntity",
@@ -548,6 +567,7 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_data",
       "description": "Data entity included in a given collection.",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "has_part",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_data",
       "multivalued": true,
       "owner": "Assay",
@@ -606,10 +626,10 @@
       "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/location",
-      "owner": "ReferenceSequence",
+      "owner": "ReferenceGenome",
       "domain_of": [
         "DataEntity",
-        "ReferenceSequence"
+        "ReferenceGenome"
       ],
       "range": "uri",
       "required": true,
@@ -646,8 +666,9 @@
     {
       "name": "has_sequence",
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_sequence",
-      "description": "Denotes that a sequence beolongs to a collection (e.g. a reference genome).",
+      "description": "Denotes that a sequence belongs to a collection (e.g. a reference genome).",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "has_part",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_sequence",
       "multivalued": true,
       "owner": "ReferenceGenome",
@@ -662,6 +683,7 @@
       "definition_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_reference",
       "description": "Specifies the reference coordinate system used by an omics dataset.",
       "from_schema": "https://w3id.org/sdsc-ordes/smoc-schema",
+      "is_a": "has_part",
       "slot_uri": "https://w3id.org/sdsc-ordes/smoc-schema/has_reference",
       "owner": "DataEntity",
       "domain_of": [
@@ -797,6 +819,7 @@
         "id",
         "name",
         "description",
+        "location",
         "has_sequence",
         "taxon_id",
         "source_uri"
@@ -815,7 +838,6 @@
         "id",
         "name",
         "description",
-        "location",
         "sequence_md5",
         "source_uri"
       ],
@@ -905,9 +927,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "smoc_schema.yaml",
-  "source_file_date": "2023-12-22T16:26:12",
-  "source_file_size": 6574,
-  "generation_date": "2023-12-22T16:26:17",
+  "source_file_date": "2024-01-04T00:36:45",
+  "source_file_size": 6873,
+  "generation_date": "2024-01-04T00:38:52",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/smoc_schema.context.jsonld",

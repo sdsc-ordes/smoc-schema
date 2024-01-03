@@ -182,7 +182,8 @@
             "enum": [
                 "CRAM",
                 "FASTQ",
-                "Zarr"
+                "Zarr",
+                "FASTA"
             ],
             "title": "DataFormat",
             "type": "string"
@@ -230,7 +231,7 @@
                     "type": "string"
                 },
                 "has_sequence": {
-                    "description": "Denotes that a sequence beolongs to a collection (e.g. a reference genome).",
+                    "description": "Denotes that a sequence belongs to a collection (e.g. a reference genome).",
                     "items": {
                         "type": "string"
                     },
@@ -238,6 +239,10 @@
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
                     "type": "string"
                 },
                 "name": {
@@ -257,6 +262,7 @@
                 }
             },
             "required": [
+                "location",
                 "id"
             ],
             "title": "ReferenceGenome",
@@ -274,10 +280,6 @@
                     "description": "A unique identifier for a thing",
                     "type": "string"
                 },
-                "location": {
-                    "description": "The uniform resource identifier to access a resource, either on the web or the filesystem",
-                    "type": "string"
-                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
@@ -293,7 +295,6 @@
                 }
             },
             "required": [
-                "location",
                 "id"
             ],
             "title": "ReferenceSequence",

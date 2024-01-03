@@ -54,6 +54,7 @@ message ReferenceGenome
   uriorcurie id = 0
   string name = 0
   string description = 0
+  uri location = 0
  repeated  referenceSequence hasSequence = 0
  repeated  integer taxonId = 0
   uri sourceUri = 0
@@ -64,7 +65,6 @@ message ReferenceSequence
   uriorcurie id = 0
   string name = 0
   string description = 0
-  uri location = 0
   string sequenceMd5 = 0
   uri sourceUri = 0
  }

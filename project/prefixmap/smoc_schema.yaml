@@ -7,7 +7,7 @@
    "example": "https://example.org/",
    "linkml": "https://w3id.org/linkml/",
    "schema": "http://schema.org/",
-   "smoc_schema": "https://w3id.org/sdsc-ordes/smoc-schema/",
+   "smoc": "https://w3id.org/sdsc-ordes/smoc-schema/",
    "sphn": "https://biomedit.ch/rdf/sphn-schema/sphn#",
    "NamedThing": {
       "@id": "schema:Thing"
