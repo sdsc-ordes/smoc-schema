@@ -2,7 +2,7 @@
 name = "smoc_schema"
 version = "0.1.0"
 description = "Metadata schema for the SMOC Multi-Omics Digital Object"
-authors = ["My Name <my-name@my-org.org>"]
+authors = ["Cyril Matthey-Doret"]
 license = "MIT"
 readme = "README.md"
 include = ["README.md", "src/smoc_schema/schema", "project"]
